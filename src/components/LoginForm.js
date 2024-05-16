@@ -3,11 +3,8 @@ import axios from "axios";
 
 export default function SignupForm() {
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
-    username: "",
-    password: "",
-    confirmPassword: "",
+    password: ""
   });
 
   // const [name,setName] = useState('');
@@ -25,24 +22,21 @@ export default function SignupForm() {
 
   const formSubmit = (e)=>{
     e.preventDefault();
-    axios.post('http://localhost:5000/signup',formData);
+    axios.post('http://localhost:5000/login',formData)
+    .then((res)=>{
+        console.log(res.data);
+    })
+    .catch((err)=>{
+        console.log(err);
+    });
   }
 
   return (
     <React.Fragment>
       <div className="formcontainer">
-        <h2 className="signupHeading">Create an Account</h2>
+        <h2 className="signupHeading">Login</h2>
         <div className="formDiv">
           <form className="signupForm" method="post" onSubmit={formSubmit}>
-            <label htmlFor="name">Name:</label>
-            <input
-              type="text"
-              name="name"
-              placeholder="Name"
-              value={formData.name}
-              onChange={changeFormData}
-              required
-            />
 
             <label htmlFor="email">Email:</label>
             <input
@@ -54,32 +48,12 @@ export default function SignupForm() {
               required
             />
 
-            <label htmlFor="username">Username: <span>This username is already taken</span></label>
-            <input
-              type="text"
-              name="username"
-              placeholder="Username"
-              value={formData.username}
-              onChange={changeFormData}
-              required
-            />
-
-            <label htmlFor="password">Password: <span>Passwords does'nt match</span></label>
+            <label htmlFor="password">Password:</label>
             <input
               type="password"
               name="password"
               placeholder="Password"
               value={formData.password}
-              onChange={changeFormData}
-              required
-            />
-
-            <label htmlFor="confirmPassword">Confirm Password: <span>Passwords does'nt match</span></label>
-            <input
-              type="password"
-              name="confirmPassword"
-              placeholder="Confirm Password"
-              value={formData.confirmPassword}
               onChange={changeFormData}
               required
             />

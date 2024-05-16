@@ -5,6 +5,7 @@ import axios from 'axios';
 import Navbar from './components/Navbar';
 import HomePage from './components/HomePage';
 import NewArrivals from './components/NewArrivals';
+import LoginForm from './components/LoginForm';
 
 
 function App() {
@@ -22,8 +23,9 @@ function App() {
     <>
       <Navbar/>
       {/* <SignupForm/> */}
-      <HomePage/>
-      <NewArrivals/>
+      {/* <HomePage/>
+      <NewArrivals/> */}
+      <LoginForm/>
     </>
   );
 }
