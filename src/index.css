@@ -11,3 +11,206 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.formcontainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  width: 30%;
+  margin: auto;
+  position: relative;
+  /* top: 50vh; */
+  /* transform: translateY(-50%); */
+}
+
+.signupForm label{
+  display: flex;
+  font-size: 0.8rem;
+  margin-bottom: 0.2rem;
+  margin-left: 0.1rem;
+  margin-right: 0.15rem;
+  justify-content: space-between;
+}
+
+.signupForm input{
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  padding: 8px 8px;
+  box-sizing: border-box;
+}
+
+.signupForm input[type="submit"]{
+  margin-top: 0.5rem;
+}
+
+.signupHeading{
+  font-size: 2rem;
+  text-align: center;
+  margin: 0 ;
+  /* margin-bottom: 1.5rem; */
+  background-color: #32CD32;
+  color: white;
+  padding: 1rem 0;
+  width: 100%;
+}
+
+.formDiv{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 2rem;
+}
+
+.Navbar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0.35rem 2rem;
+  text-align: center;
+  align-items: center;
+  border: 1px solid black;
+  margin-bottom: 1.5rem;
+}
+
+.nav-left{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.nav-mid{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+}
+
+.nav-mid ul{
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.nav-right{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.nav-right img{
+  height: 2.5rem;
+}
+
+.homePageContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 8rem;
+  padding-left: 8rem;
+}
+
+.homePageContainer img{
+  height: 25rem;
+}
+
+.homePageHeading{
+  margin-top: 1.5rem;
+}
+
+.homePageHeading button {
+  margin-top: 0.8rem;
+  padding: 10px 20px;
+}
+
+.homePageHeading button a{
+  
+  display: flex; 
+  flex-direction: row;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.homePageHeading button img{
+  height: 1.5rem;
+}
+
+.sliderOuterContainer{
+  display: grid;
+  grid-auto-flow: column;
+  width: 100%;
+  gap: 5rem;
+  overflow-x: auto;
+  border: 1px solid black;
+}
+
+.sliderinnerdiv{
+  display: flex;
+  flex-direction: column;
+  width: 24rem;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.sliderinnerdiv img{
+  width: 100%;
+}
+
+.pricingContainer{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pricingContainer button{
+  padding: 8px 16px;
+  background-color: white;
+}
+
+.ratings{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  width: 100%;
+}
+
+.ratingsoutercontainer{
+  height: 0.8rem;
+  width: 8rem;
+  border: 1px solid black;
+  border-radius: 20px;
+}
+
+.ratingsinnercontainer
+{
+  height: 100%;
+  background-image: linear-gradient(to right , red , green);
+}
+
+
+
+
+
+
+
+.footerContainer{
+  display: flex;
+  flex-direction: column;
+}

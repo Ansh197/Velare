@@ -1,24 +1,30 @@
-import logo from './logo.svg';
+import React, { useEffect, useState} from 'react';
 import './App.css';
+import SignupForm from './components/SignupForm';
+import axios from 'axios';
+import Navbar from './components/Navbar';
+import HomePage from './components/HomePage';
+import NewArrivals from './components/NewArrivals';
+
 
 function App() {
+  
+  // const [message,setMessage] = useState('');
+
+  // useEffect(()=>{
+  //   axios.get('http://localhost:5000/').then((res)=>{
+  //     console.log(res.data);
+  //     setMessage(res.data);
+  //   });
+  // },[]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar/>
+      {/* <SignupForm/> */}
+      <HomePage/>
+      <NewArrivals/>
+    </>
   );
 }
 
