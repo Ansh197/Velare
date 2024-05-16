@@ -19,7 +19,7 @@ code {
   align-items: center;
   border: 1px solid black;
   width: 30%;
-  margin: auto;
+  margin: 1rem auto;
   position: relative;
   /* top: 50vh; */
   /* transform: translateY(-50%); */
@@ -34,10 +34,14 @@ code {
   justify-content: space-between;
 }
 
+.formInputDiv{
+  margin-bottom: 1.2rem;
+}
+
 .signupForm input{
   display: inline-block;
   width: 100%;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.3rem;
   font-size: 1rem;
   padding: 8px 8px;
   box-sizing: border-box;
@@ -205,9 +209,28 @@ code {
 }
 
 
+.errorField{
+  margin: 0;
+  padding-left: 0.1rem;
+}
 
+.errorField ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
 
+.errorField ul li{
+  color: red;
+  font-size: 0.8rem;
+}
 
+.errorField span{
+  margin: 0;
+  padding: 0;
+  color: red;
+  font-size: 0.8rem;
+}
 
 
 .footerContainer{

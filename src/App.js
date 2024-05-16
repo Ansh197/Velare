@@ -22,10 +22,10 @@ function App() {
   return (
     <>
       <Navbar/>
-      {/* <SignupForm/> */}
+      <SignupForm/>
       {/* <HomePage/>
       <NewArrivals/> */}
-      <LoginForm/>
+      {/* <LoginForm/> */}
     </>
   );
 }
