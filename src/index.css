@@ -1,10 +1,7 @@
 body {
+  color: #123026;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Alice", serif;
 }
 
 code {
@@ -73,15 +70,34 @@ a{
   padding: 2rem;
 }
 
+.discount-tab{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #123026;
+  color: white;
+  padding: 0.6rem 0;
+}
+
 .Navbar{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 0.35rem 2rem;
+  padding: 0.7rem 4rem;
   text-align: center;
   align-items: center;
-  border: 1px solid black;
-  margin-bottom: 1.5rem;
+}
+
+.logo-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo-container p{
+  margin: 0;
+  padding: 0;
 }
 
 .nav-left{
@@ -90,24 +106,23 @@ a{
   align-items: center;
   text-align: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 4rem;
 }
 
-.nav-mid{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  text-align: center;
-  justify-content: space-between;
+.nav-left img{
+  width: 9rem;
 }
 
-.nav-mid ul{
+.nav-left ul{
+  margin: 0;
+  padding: 0;
+  padding-top: 0.4rem;
   list-style: none;
   display: flex;
   justify-content: space-between;
   align-items: center;
   text-align: center;
-  gap: 1rem;
+  gap: 2rem;
 }
 
 
@@ -117,19 +132,24 @@ a{
   align-items: center;
   text-align: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 1.5rem;
+}
+
+.nav-right p{
+  padding-top: 0.45rem;
 }
 
 .nav-right img{
   height: 2.5rem;
 }
 
-.homePageContainer{
+.homepageinnercontainer{
+  width: 100%;
+  background: rgba(18, 48, 38,0.5);
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin-top: 8rem;
-  padding-left: 8rem;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 4rem;
 }
 
 .homePageContainer img{
@@ -137,11 +157,34 @@ a{
 }
 
 .homePageHeading{
-  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  color: white;
+  width: 70%;
+}
+
+.homePageHeading h1{
+  margin: 0;
+  font-size: 3rem;
+  margin-bottom: 2rem;
+}
+
+.homePageHeading h2{
+  margin: 0; 
+  margin-bottom: 0.2rem;
+}
+
+.homePageHeading p{
+  margin: auto;
+  width: 60%;
+  margin: 0;
+  margin-bottom: 2.5rem;
 }
 
 .homePageHeading button {
-  margin-top: 0.8rem;
+  /* margin-top: 0.8rem; */
   padding: 10px 20px;
 }
 
@@ -242,4 +285,26 @@ a{
 .footerContainer{
   display: flex;
   flex-direction: column;
+}
+
+.homePageHeading2{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 0;
+  width: 60%;
+  margin: auto;
+  gap: 0.5rem;
+}
+
+.homePageHeading2 h1{
+  font-size: 2.7rem;
+  margin: 0;
+}
+
+.homePageHeading2 p{
+  font-size: 1.6rem;
+  margin: 0;
 }

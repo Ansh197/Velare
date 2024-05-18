@@ -4,7 +4,6 @@ import SignupForm from './components/SignupForm';
 import axios from 'axios';
 import Navbar from './components/Navbar';
 import HomePage from './components/HomePage';
-import NewArrivals from './components/NewArrivals';
 import LoginForm from './components/LoginForm';
 import { BrowserRouter , Routes , Route } from 'react-router-dom';
 
