@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import HomePage from './components/HomePage';
 import NewArrivals from './components/NewArrivals';
 import LoginForm from './components/LoginForm';
+import { BrowserRouter , Routes , Route } from 'react-router-dom';
 
 
 function App() {
@@ -20,13 +21,15 @@ function App() {
   // },[]);
 
   return (
-    <>
+    <React.Fragment>
+      <BrowserRouter>
       <Navbar/>
-      <SignupForm/>
-      {/* <HomePage/>
-      <NewArrivals/> */}
-      {/* <LoginForm/> */}
-    </>
+        <Routes>
+          <Route exact path='/' element={<HomePage/>}></Route>
+          <Route exact path='/signin' element={<SignupForm/>}></Route>
+        </Routes>
+      </BrowserRouter>
+    </React.Fragment>
   );
 }
 
