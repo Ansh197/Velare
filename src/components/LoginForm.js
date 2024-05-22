@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function SignupForm() {
   const [formData, setFormData] = useState({
@@ -34,31 +35,34 @@ export default function SignupForm() {
   return (
     <React.Fragment>
       <div className="formcontainer">
-        <h2 className="signupHeading">Login</h2>
+        <h2 className="signupHeading">Sign In to your Account</h2>
         <div className="formDiv">
           <form className="signupForm" method="post" onSubmit={formSubmit}>
 
-            <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={formData.email}
-              onChange={changeFormData}
-              required
-            />
+            <div className="formInputDiv">
+              <label htmlFor="email">Email Address</label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={changeFormData}
+                required
+              />
+            </div>
 
-            <label htmlFor="password">Password:</label>
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={formData.password}
-              onChange={changeFormData}
-              required
-            />
+            <div className="formInputDiv">
+              <label htmlFor="password"><span>Password</span> <a>Forgot Password?</a></label>
+              <input
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={changeFormData}
+                required
+              />
+            </div>
 
             <input type="submit" value="Submit" />
+            <div className="form-bottom">Don't have an account yet ? <Link to='http://localhost:3000/signup'><a>Sign Up here</a></Link></div>
           </form>
         </div>
       </div>

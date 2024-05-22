@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function SignupForm() {
   const [errorMessage, setErrorMessage] = useState([]);
@@ -9,7 +10,6 @@ export default function SignupForm() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    username: "",
     password: "",
     confirmPassword: "",
   });
@@ -80,45 +80,31 @@ export default function SignupForm() {
         <div className="formDiv">
           <form className="signupForm" method="post" onSubmit={formSubmit}>
             <div className="formInputDiv">
-              <label htmlFor="name">Name:</label>
+              <label htmlFor="name">Your Name</label>
               <input
                 type="text"
                 name="name"
-                placeholder="Name"
                 value={formData.name}
                 onChange={changeFormData}
                 required
               />
             </div>
             <div className="formInputDiv">
-              <label htmlFor="email">Email:</label>
+              <label htmlFor="email">Email Address</label>
               <input
                 type="email"
                 name="email"
-                placeholder="Email"
                 value={formData.email}
-                onChange={changeFormData}
-                required
-              />
-            </div>
-            <div className="formInputDiv">
-              <label htmlFor="username">Username:</label>
-              <input
-                type="text"
-                name="username"
-                placeholder="Username"
-                value={formData.username}
                 onChange={changeFormData}
                 required
               />
             </div>
 
             <div className="formInputDiv">
-              <label htmlFor="password">Password:</label>
+              <label htmlFor="password">Password</label>
               <input
                 type="password"
                 name="password"
-                placeholder="Password"
                 value={formData.password}
                 onChange={changeFormData}
                 required
@@ -133,11 +119,10 @@ export default function SignupForm() {
               </div>
             </div>
             <div className="formInputDiv">
-              <label htmlFor="confirmPassword">Confirm Password:</label>
+              <label htmlFor="confirmPassword">Confirm Password</label>
               <input
                 type="password"
                 name="confirmPassword"
-                placeholder="Confirm Password"
                 value={formData.confirmPassword}
                 onChange={changeFormData}
                 required
@@ -149,12 +134,11 @@ export default function SignupForm() {
               </div>
             </div>
 
-              <input type="submit" value="Submit" />
-            
+              <input type="submit" value="Sign Up" />
+            <div className="form-bottom">Already have an account ? <Link to='http://localhost:3000/login'><a>Login here</a></Link></div>
           </form>
         </div>
       </div>
-      {/* <div style={{textAlign:'center'}}><p>Already have an account ? <a href="#" style={{textDecoration:'none'}}>Sign In here</a></p></div> */}
-    </React.Fragment>
+      </React.Fragment>
   );
 }

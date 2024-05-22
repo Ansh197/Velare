@@ -1,96 +1,23 @@
-import React from 'react' 
-import sofa1 from '../images/sofa1.jpg'
+import React from "react";
+import sofa1 from "../images/sofa1.jpg";
+import arrow from "../images/rightArrow.png"
 
-export default function CardSlider() {
+export default function CardSlider(props) {
+  const sliderData = props.sliderData;
   return (
     <React.Fragment>
-        <div className='sliderOuterContainer'>
-            <div className='sliderinnerdiv'>
-                <img src={sofa1}/>
-                <h4>Luxury Sofa made from fon material </h4>
-                <div className='ratings'>
-                  <h4>Ratings:</h4>
-                  <div className='ratingsoutercontainer'>
-                    <div className='ratingsinnercontainer' style={{width:'10%'}}></div>
-                  </div>
-                </div>
-                <div className='pricingContainer'>
-                    <h3>$ 16000</h3>
-                    <button><a>Add to Cart</a></button>
-                </div>
-            </div>
-            <div className='sliderinnerdiv'>
-                <img src={sofa1}/>
-                <h4>Luxury Sofa made from fon material </h4>
-                <div className='ratings'>
-                  <h4>Ratings:</h4>
-                  <div className='ratingsoutercontainer'>
-                    <div className='ratingsinnercontainer' style={{width:'10%'}}></div>
-                  </div>
-                </div>
-                <div className='pricingContainer'>
-                    <h3>$ 16000</h3>
-                    <button><a>Add to Cart</a></button>
-                </div>
-            </div>
-            <div className='sliderinnerdiv'>
-                <img src={sofa1}/>
-                <h4>Luxury Sofa made from fon material </h4>
-                <div className='ratings'>
-                  <h4>Ratings:</h4>
-                  <div className='ratingsoutercontainer'>
-                    <div className='ratingsinnercontainer' style={{width:'10%'}}></div>
-                  </div>
-                </div>
-                <div className='pricingContainer'>
-                    <h3>$ 16000</h3>
-                    <button><a>Add to Cart</a></button>
-                </div>
-            </div>
-            <div className='sliderinnerdiv'>
-                <img src={sofa1}/>
-                <h4>Luxury Sofa made from fon material </h4>
-                <div className='ratings'>
-                  <h4>Ratings:</h4>
-                  <div className='ratingsoutercontainer'>
-                    <div className='ratingsinnercontainer' style={{width:'10%'}}></div>
-                  </div>
-                </div>
-                <div className='pricingContainer'>
-                    <h3>$ 16000</h3>
-                    <button><a>Add to Cart</a></button>
-                </div>
-            </div>
-            <div className='sliderinnerdiv'>
-                <img src={sofa1}/>
-                <h4>Luxury Sofa made from fon material </h4>
-                <div className='ratings'>
-                  <h4>Ratings:</h4>
-                  <div className='ratingsoutercontainer'>
-                    <div className='ratingsinnercontainer' style={{width:'10%'}}></div>
-                  </div>
-                </div>
-                <div className='pricingContainer'>
-                    <h3>$ 16000</h3>
-                    <button><a>Add to Cart</a></button>
-                </div>
-            </div>
-            <div className='sliderinnerdiv'>
-                <img src={sofa1}/>
-                <h4>Luxury Sofa made from fon material </h4>
-                <div className='ratings'>
-                  <h4>Ratings:</h4>
-                  <div className='ratingsoutercontainer'>
-                    <div className='ratingsinnercontainer' style={{width:'10%'}}></div>
-                  </div>
-                </div>
-                <div className='pricingContainer'>
-                    <h3>$ 16000</h3>
-                    <button><a>Add to Cart</a></button>
-                </div>
-            </div>
-
+      <div className="sliderOuterContainer">
+        {sliderData.map((elem)=>
+          <div className="sliderinnerdiv">
+          <img src={sofa1} />
+          <div className="cardslider-description">
+            <h2>Now ${elem.price} USD</h2>
+            <p>{elem.description}</p>
+            <a>Shop Now <img alt="arrow" style={{width:'1.5rem',height:'1.5rem'}} src={arrow}/></a>
+          </div>
         </div>
+        )}
+      </div>
     </React.Fragment>
-  )
+  );
 }

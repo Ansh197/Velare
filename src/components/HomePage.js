@@ -2,8 +2,35 @@ import React from 'react'
 import CardSlider from './CardSlider'
 import rightArrow from '../images/rightArrow.png'
 import testimage from '../images/test3.jpg'
+import reviewImage from '../images/reviewsofa.jpg'
+import Categories from './Categories'
+import sofa from '../images/sofa1.jpg'
+import nature from '../images/nature.webp'
 
 export default function HomePage() {
+
+  const sliderData = [
+    {
+      imgurl:testimage,
+      price:"180",
+      description:"Weekend Boot in Allegra - Water Resistant. All Year. $198 USD",
+    },
+    {
+      imgurl:testimage,
+      price:"180",
+      description:"Weekend Boot in Allegra - Water Resistant. All Year. $198 USD",
+    },
+    {
+      imgurl:testimage,
+      price:"180",
+      description:"Weekend Boot in Allegra - Water Resistant. All Year. $198 USD",
+    },
+    {
+      imgurl:testimage,
+      price:"180",
+      description:"Weekend Boot in Allegra - Water Resistant. All Year. $198 USD",
+    },
+  ]
 
   const homepagestyle = {
     backgroundImage:`url(${testimage})`,
@@ -15,6 +42,25 @@ export default function HomePage() {
     height: '40rem',
   }
 
+  const categoriesData = [
+    {
+      imageURL : sofa,
+      category : 'Home Decor' 
+    },
+    {
+      imageURL : sofa,
+      category : 'Home Decor' 
+    },
+    {
+      imageURL : sofa,
+      category : 'Home Decor' 
+    },
+    {
+      imageURL : sofa,
+      category : 'Home Decor' 
+    }
+  ]
+
   return (
     <React.Fragment>
       <div className='homePageContainer' style={homepagestyle}>
@@ -23,9 +69,8 @@ export default function HomePage() {
                 <h1>Elevate Your Home with Exquisite Design</h1>
                 <h2>Curated Collections Featuring Superior Materials and Detail</h2>
                 <p>Redefine your living spaces with furniture that embodies superior quality and a timeless aesthetic. Our commitment to excellence ensures that every detail contributes to a harmonious and luxurious home environment.</p>
-                <button><a>Shop Now <img src={rightArrow} /></a></button>
+                <button><a href='/'>Shop Now <img src={rightArrow} alt='right arrow' /></a></button>
             </div>
-            {/* <img src={testimage} alt='home image'/> */}
         </div>
       </div>
 
@@ -34,12 +79,39 @@ export default function HomePage() {
         <p>Shop our limited collections of award winning sustainable furniture. Modern desing, affordable prices and oh, so comfy.</p>
       </div>
 
-        {/* <div>
-          <div style={{margin:'0 5rem'}}>
-              <h2 style={{marginBottom:'4rem',marginTop:'3rem'}}>New Arrivals</h2>
-              <CardSlider/>
+        <div style={{padding:'0 5rem'}}>
+            <CardSlider sliderData={sliderData}/>
+        </div>
+
+        <div className='homePageHeading3'>
+          <h1>Perfect Fit. Free Delivery. Hassle-Free Returns.</h1>
+        </div>
+
+        <div className='reviewContainer'>
+          <div className='reviewDescription'>
+            <h1>*****</h1>
+            <p>"I am thrilled with the Elysian Velvet Sofa. The luxurious velvet fabric, solid craftsmanship, and perfect fit for my living room make it a standout piece. Free delivery and hassle-free returns made the purchase even better. Highly recommended!"</p>
+            <p>CLAIRE</p>
           </div>
-        </div> */}
+          <div className='reviewImage'><img src={reviewImage} alt='reviewImage'/></div>
+        </div>
+
+        <div className='homePageHeading2'>
+        <h1>Moving Fast</h1>
+        <p>Only a few articles left. Get them before they're gone.</p>
+      </div>
+
+      <div style={{marginBottom:'5rem'}}>
+        <Categories categoriesData={categoriesData}/>
+      </div>
+
+      <div className='homePageHeading4'><h1>More Nature. Less Waste.</h1></div>
+
+      <div className='sustainable-container'>
+        <div className='sustainable-img'><img src={nature} alt='nature'/> </div>
+        <div className='sustainable-heading'><h1>Nature First. Beautiful Furniture. Greener Planet.</h1></div>
+      </div>
+
 
     </React.Fragment>
   )
