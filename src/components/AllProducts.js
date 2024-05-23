@@ -1,11 +1,14 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import testImage from '../images/test3.jpg'
 import expandArrow from '../images/icons8-expand-arrow-50.png'
+import Filter from './Filter';
 
+{/* {images.map((image,index)=>
+                    <img key={index} src={image} alt={`image-${index}`} />
+                )} */}
 
 const imagesDir = require.context('../images/products',true);
 const images = imagesDir.keys().map(image => imagesDir(image));
-// console.log(images); 
 const productData=[
   {
     description:'Farina half leather sectional sofa' ,
@@ -29,30 +32,13 @@ const productData=[
   }
 ]
 
-function combineImages(){
-  for(var i=0;i<productData.length;++i)
-    {
-      productData[i].imageURL = images[i];
-      // console.log(images[i]);
-    }
-    console.log(images[0]===productData[0].imageURL)
-  // for(var i=0;i<productData.length;++i)
-  // {
-  //   productData[i].imageURL = images[i].data;
-  //   console.log(productData[i].imageURL);
-  // }
-  console.log(productData);
-}
-
-{/* {images.map((image,index)=>
-                    <img key={index} src={image} alt={`image-${index}`} />
-                )} */}
-
 export default function AllProducts() {
 
-  useEffect(()=>{
-    combineImages()
-  },[]);
+  const [filter,setfilter] = useState({
+    color:false,
+    category:false,
+    brand:false
+  });
 
   return (
     <React.Fragment>
@@ -60,9 +46,10 @@ export default function AllProducts() {
 
           <div className='filters'>
             <h1>Filters</h1>
-            <div className='filter-innerdiv'>Color <img src={expandArrow} alt='expand arrow'/></div>
-            <div className='filter-innerdiv'>Brand <img src={expandArrow} alt='expand arrow'/></div>
-            <div className='filter-innerdiv'>Category <img src={expandArrow} alt='expand arrow'/></div>
+            <div className='filter-innerdiv' onClick={()=>{setfilter({...filter,color:filter.color^1})}}>Color <img src={expandArrow} alt='expand arrow'/></div>
+            <div>{filter.color?<Filter/>:null}</div>
+            <div className='filter-innerdiv' onClick={()=>{setfilter({...filter,brand:filter.brand^1})}}>Brand <img src={expandArrow} alt='expand arrow'/></div>
+            <div className='filter-innerdiv' onClick={()=>{setfilter({...filter,category:filter.category^1})}}>Category <img src={expandArrow} alt='expand arrow'/></div>
           </div>
 
             <div className='productsGrid'>

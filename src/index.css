@@ -623,6 +623,7 @@ a{
   border-top: 1px solid #123026;
   width: 100%;
   justify-content: space-between;
+  cursor: pointer;
 }
 
 .filters h1{
