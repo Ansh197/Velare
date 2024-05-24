@@ -6,7 +6,7 @@ import logo from '../images/png/logo-no-background.png'
 import shoppingbag from '../images/cart.png'
 import UserList from './UserList';
 
-export default function Navbar() {
+export default function Navbar(props) {
 
   const [showUserOptions , setUserOptions] = useState(false); 
 
@@ -36,7 +36,7 @@ export default function Navbar() {
             <Link to='/cart'><img src={shoppingbag} alt='cart'/></Link>
             <div>
               <img src={userIcon} alt='logo' onClick={toggleUserOptions}/>
-              {showUserOptions ? <UserList toggle={setUserOptions} /> : null}
+              {showUserOptions ? <UserList toggle={setUserOptions} loginInfo={props.loginInfo} setLoginInfo={props.setLoginInfo}/> : null}
             </div>
           </div>
         </div>

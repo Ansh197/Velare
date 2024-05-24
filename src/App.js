@@ -13,25 +13,23 @@ import Cart from './components/Cart';
 
 function App() {
   
-  // const [message,setMessage] = useState('');
-
-  // useEffect(()=>{
-  //   axios.get('http://localhost:5000/').then((res)=>{
-  //     console.log(res.data);
-  //     setMessage(res.data);
-  //   });
-  // },[]);
-
+  const [userData,setUserData] = useState({
+    isLoggedIn:false,
+    userid: '',
+    username:'',
+    email:''
+  });
+  
   return (
     <React.Fragment>
       <BrowserRouter>
-      <Navbar/>
+      <Navbar  loginInfo={userData} setLoginInfo={setUserData} />
         <Routes>
           <Route exact path='/' element={<HomePage/>}></Route>
           <Route exact path='/signup' element={<SignupForm/>}></Route>
-          <Route exact path='/login' element={<LoginForm/>}></Route>
+          <Route exact path='/login' element={<LoginForm setParentUserData={setUserData} />}></Route>
           <Route exact path='/products' element={<AllProducts/>}></Route>
-          <Route exact path='/cart' element={<Cart/>}></Route>
+          <Route exact path='/cart' element={userData.isLoggedIn ? <Cart/> : <LoginForm setParentUserData={setUserData} />}></Route>
         </Routes>
         <Footer/>
       </BrowserRouter>

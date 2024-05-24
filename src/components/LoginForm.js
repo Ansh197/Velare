@@ -1,17 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-export default function SignupForm() {
+export default function SignupForm(props) {
+
+  const initialRender = useRef(true);
+  const [error,setError] =useState('');
+  const [userData,setUserData] = useState({
+    isLoggedIn:false,
+    userid: '',
+    username:'',
+    email:''
+});
+
   const [formData, setFormData] = useState({
     email: "",
     password: ""
   });
 
-  // const [name,setName] = useState('');
-  // const [email,setEmail] = useState('');
-  // const [username,setUsername] = useState('');
-  // const [password,setPassword] = useState('');
+  useEffect(()=>{
+    console.log(userData);
+    props.setParentUserData(userData);
+    if(initialRender.current)
+    {
+      initialRender.current=false;
+    }
+    else
+    {
+      userData.isLoggedIn==true ? setError('') : setError('You have entered wrong email or password');
+    }
+  },[userData])
 
   const changeFormData = (e)=>{
     const {name,value} = e.target;
@@ -21,15 +39,15 @@ export default function SignupForm() {
     }));
   };
 
-  const formSubmit = (e)=>{
+  async function formSubmit(e){
     e.preventDefault();
-    axios.post('http://localhost:5000/login',formData)
-    .then((res)=>{
-        console.log(res.data);
+    await axios.post('http://localhost:5000/login',formData
+    ).then(res=>{
+      setUserData(res.data);
     })
-    .catch((err)=>{
-        console.log(err);
-    });
+    .catch(error=>{
+      console.log(error);
+    })
   }
 
   return (
@@ -60,6 +78,8 @@ export default function SignupForm() {
                 required
               />
             </div>
+
+            <div className="LoginError">{error}</div>
 
             <input type="submit" value="Submit" />
             <div className="form-bottom">Don't have an account yet ? <Link to='http://localhost:3000/signup'><a>Sign Up here</a></Link></div>

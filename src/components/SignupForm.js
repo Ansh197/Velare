@@ -63,7 +63,6 @@ export default function SignupForm() {
 
   const formSubmit = (e) => {
     e.preventDefault();
-    
     var isok = checkPassword();
     if (isok) {
       axios.post("http://localhost:5000/signup", formData);

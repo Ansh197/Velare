@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios';
 import testImage from '../images/test3.jpg'
 import expandArrow from '../images/icons8-expand-arrow-50.png'
 import Filter from './Filter';
@@ -9,36 +10,30 @@ import Filter from './Filter';
 
 const imagesDir = require.context('../images/products',true);
 const images = imagesDir.keys().map(image => imagesDir(image));
-const productData=[
-  {
-    description:'Farina half leather sectional sofa' ,
-    price:'3000 $',
-  },
-  {
-    description:"Versatile sectional with ample seating",
-    price:'1800 $'
-  },
-  {
-    description:"Convertible sofa for flexible living",
-    price:'5500 $'
-  },
-  {
-    description:'Elegant tuxedo sofa with high arms',
-    price:'2300 $'
-  },
-  {
-    description:'Chaise sofa for luxurious lounging',
-    price:'3100 $'
-  }
-]
 
 export default function AllProducts() {
+
+  const effectFunction = async() =>{
+    await axios.get('http://localhost:5000/allproducts')
+      .then(res=>{
+        setProductData(res.data);
+      })
+      .catch(error=>{
+        console.log(error);
+      })
+  }
+
+  useEffect(()=>{
+    effectFunction();
+  },[])
 
   const [filter,setfilter] = useState({
     color:false,
     category:false,
     brand:false
   });
+
+  const [productData,setProductData] = useState([]);
 
   return (
     <React.Fragment>
@@ -57,7 +52,7 @@ export default function AllProducts() {
                 {productData.map((card,index)=>(
                   <div className='productCard'>
                   <div className='productImageContainer'>
-                    <img src={images[index]} alt={`test-Image-${index}`}/>
+                    <img src={card.image_url} alt={`test-Image-${index}`}/>
                   </div>
                   <div className='productDescriptionContainer'>
                     <h3>{card.description}</h3>
@@ -66,27 +61,6 @@ export default function AllProducts() {
                   <button>Add to Cart</button>
                 </div>
                 ))}
-                {/* <div className='productCard'>
-                  <div className='productImageContainer'>
-                    <img src={testImage} alt='test-Image'/>
-                  </div>
-                  <div className='productDescriptionContainer'>
-                    <h3>Farina half leather sectional sofa</h3>
-                    <h1>3000.00 $</h1>
-                  </div>
-                  <button>Add to Cart</button>
-                </div>
-                <div className='productCard'>
-                  <div className='productImageContainer'>
-                    <img src={testImage} alt='test-Image'/>
-                  </div>
-                  <div className='productDescriptionContainer'>
-                    <h3>Farina half leather sectional sofa</h3>
-                    <h1>3000.00 $</h1>
-                  </div>
-                  <button>Add to Cart</button>
-                </div> */}
-
             </div>
         </div>
     </React.Fragment>
