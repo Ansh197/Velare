@@ -1,28 +1,45 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import img from '../images/OfficeChair3.jpeg'
 import { useState } from 'react';
+import axios from 'axios';
 
-const cartProducts = [
-    {
-        imgURL: img,
-        description:'Farina half leather sectional sofa' ,
-        price:'3000 $',
-      },
-      {
-        imgURL: img,
-        description:"Versatile sectional with ample seating",
-        price:'1800 $'
-      },
-      {
-        imgURL: img,
-        description:"Convertible sofa for flexible living",
-        price:'5500 $'
-      },
-]
+// const cartProducts = [
+//     {
+//         imgURL: img,
+//         description:'Farina half leather sectional sofa' ,
+//         price:'3000 $',
+//       },
+//       {
+//         imgURL: img,
+//         description:"Versatile sectional with ample seating",
+//         price:'1800 $'
+//       },
+//       {
+//         imgURL: img,
+//         description:"Convertible sofa for flexible living",
+//         price:'5500 $'
+//       },
+// ]
 
-export default function Cart() {
+export default function Cart(props) {
 
     const [selectedValue, setSelectedValue] = useState('');
+    const [cartProducts,setCartProducts] = useState([]);
+
+    async function fetchProducts(){
+        await axios.post('http://localhost:5000/cart',props.userData)
+        .then((res)=>{
+            console.log(res.data);
+            setCartProducts(res.data);
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+    }
+
+    useEffect(()=>{
+        fetchProducts();
+    })
 
     const handleChange = (event) => {
         setSelectedValue(event.target.value);
@@ -39,7 +56,7 @@ export default function Cart() {
             <div className='CartList'>
                 {cartProducts.map((elem,index)=>
                     <div className='CartListElem'>
-                    <img src={elem.imgURL} alt={`image-${index}`}/>
+                    <img src={elem.image_url} alt={`image-${index}`}/>
                     <div className='CartListContent'>
                         <div className='CL-Description'>
                             <h1>{elem.description}</h1>

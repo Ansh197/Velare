@@ -101,7 +101,16 @@ app.get('/allproducts',async (req,res)=>{
     res.json(productData);
 })
 
-// db.end();
+app.post('/addtocart',async (req,res)=>{
+    const result = await db.query(`Insert into cart (product_id,user_id) values($1,$2)`,[req.body.product_id,req.body.user_id]);
+})
+
+app.post('/cart',async(req,res)=>{
+    const result = await db.query(`SELECT * FROM products JOIN cart ON products.product_id = cart.product_id WHERE cart.user_id = $1;`,[req.body.userid])
+    res.json(result.rows)
+})
+
+// db.end(); 
 
 app.listen(port,()=>{
     console.log('Server is running');

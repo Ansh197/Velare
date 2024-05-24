@@ -28,8 +28,8 @@ function App() {
           <Route exact path='/' element={<HomePage/>}></Route>
           <Route exact path='/signup' element={<SignupForm/>}></Route>
           <Route exact path='/login' element={<LoginForm setParentUserData={setUserData} />}></Route>
-          <Route exact path='/products' element={<AllProducts/>}></Route>
-          <Route exact path='/cart' element={userData.isLoggedIn ? <Cart/> : <LoginForm setParentUserData={setUserData} />}></Route>
+          <Route exact path='/products' element={<AllProducts userData={userData} />}></Route>
+          <Route exact path='/cart' element={userData.isLoggedIn ? <Cart userData={userData} /> : <LoginForm setParentUserData={setUserData} />}></Route>
         </Routes>
         <Footer/>
       </BrowserRouter>

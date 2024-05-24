@@ -4,14 +4,22 @@ import testImage from '../images/test3.jpg'
 import expandArrow from '../images/icons8-expand-arrow-50.png'
 import Filter from './Filter';
 
-{/* {images.map((image,index)=>
-                    <img key={index} src={image} alt={`image-${index}`} />
-                )} */}
+export default function AllProducts(props) {
 
-const imagesDir = require.context('../images/products',true);
-const images = imagesDir.keys().map(image => imagesDir(image));
-
-export default function AllProducts() {
+  function addToCart(index){
+    if(props.userData.isLoggedIn)
+      {
+        var sendData = {
+          product_id:productData[index].product_id,
+          user_id: props.userData.userid
+        }
+        axios.post('http://localhost:5000/addtocart',sendData)
+      }
+      else
+      {
+        console.log('You are not logged in');
+      }
+  }
 
   const effectFunction = async() =>{
     await axios.get('http://localhost:5000/allproducts')
@@ -58,7 +66,7 @@ export default function AllProducts() {
                     <h3>{card.description}</h3>
                     <h1>{card.price}</h1>
                   </div>
-                  <button>Add to Cart</button>
+                  <button  onClick={()=> addToCart(index)}>Add to Cart</button>
                 </div>
                 ))}
             </div>
