@@ -110,6 +110,16 @@ app.post('/cart',async(req,res)=>{
     res.json(result.rows)
 })
 
+app.post('/removefromcart',async(req,res)=>{
+    const result = await db.query(`delete from cart where product_id = $1 and user_id = $2`,[req.body.product_id,req.body.user_id]);
+    res.json(result.rows)
+})
+
+app.post('/changequantitycart',async (req,res)=>{
+    console.log(req.body);
+    const result = await db.query(`update cart set quantity = $1 where id = $2`,[req.body.quantity,req.body.id])
+})
+
 // db.end(); 
 
 app.listen(port,()=>{

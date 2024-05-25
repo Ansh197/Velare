@@ -2,34 +2,14 @@ import React, { useEffect } from 'react'
 import img from '../images/OfficeChair3.jpeg'
 import { useState } from 'react';
 import axios from 'axios';
-
-// const cartProducts = [
-//     {
-//         imgURL: img,
-//         description:'Farina half leather sectional sofa' ,
-//         price:'3000 $',
-//       },
-//       {
-//         imgURL: img,
-//         description:"Versatile sectional with ample seating",
-//         price:'1800 $'
-//       },
-//       {
-//         imgURL: img,
-//         description:"Convertible sofa for flexible living",
-//         price:'5500 $'
-//       },
-// ]
-
 export default function Cart(props) {
 
-    const [selectedValue, setSelectedValue] = useState('');
     const [cartProducts,setCartProducts] = useState([]);
+    const [totalPrice,setTotalPrice] = useState(0);
 
     async function fetchProducts(){
         await axios.post('http://localhost:5000/cart',props.userData)
         .then((res)=>{
-            console.log(res.data);
             setCartProducts(res.data);
         })
         .catch((err)=>{
@@ -37,12 +17,29 @@ export default function Cart(props) {
         })
     }
 
+    async function removeFromCart(index){
+        console.log('remove clicked');
+        await axios.post('http://localhost:5000/removefromcart',cartProducts[index]);
+        fetchProducts();
+    }
+
     useEffect(()=>{
         fetchProducts();
-    })
+        var curPrice = 0;
+        for(var i=0;i<cartProducts.length;++i)
+        {
+            curPrice+= (cartProducts[i].quantity * cartProducts[i].price)
+        }
+        setTotalPrice(curPrice);
+    },[cartProducts])
 
-    const handleChange = (event) => {
-        setSelectedValue(event.target.value);
+    const handleChange = async (event,index) => {
+        let tempArray = [...cartProducts];
+        tempArray[index].quantity = event.target.value;
+        console.log(tempArray[index])
+        await axios.post('http://localhost:5000/changequantitycart',tempArray[index]);
+        setCartProducts(tempArray);
+        // setCartProducts(tempArray);
     };
 
   return (
@@ -56,22 +53,24 @@ export default function Cart(props) {
             <div className='CartList'>
                 {cartProducts.map((elem,index)=>
                     <div className='CartListElem'>
-                    <img src={elem.image_url} alt={`image-${index}`}/>
+                    <div className='cartlistimageconatainer'>
+                        <img src={elem.image_url} alt={`image-${index}`}/>
+                    </div>
                     <div className='CartListContent'>
                         <div className='CL-Description'>
                             <h1>{elem.description}</h1>
-                            <h1>{elem.price}</h1>
+                            <h1>{`${elem.price}`}</h1>
                         </div>
                         <div className='CL-Remove'>
                             <div className='CL-quantity'>
                                 <p>Quantity :</p>
-                                <select value={selectedValue} onChange={handleChange}>
-                                    <option value={1}>1</option>
-                                    <option value={2}>2</option>
-                                    <option value={3}>3</option>
+                                <select key={index} value={elem.quantity} onChange={(event)=>handleChange(event,index)}>
+                                    <option value={1}>{1}</option>
+                                    <option value={2}>{2}</option>
+                                    <option value={3}>{3}</option>
                                 </select>
                             </div>
-                            <a>Remove</a>
+                            <a onClick={()=>removeFromCart(index)}>Remove</a>
                         </div>
                     </div>
                     </div>
@@ -80,7 +79,7 @@ export default function Cart(props) {
             <div className='CheckoutInfo'>
                 <div className='checkoutHeadings'>
                     <h3>Subtotal</h3>
-                    <h3>3000 $</h3>
+                    <h3>{totalPrice} $</h3>
                 </div>
                 <div className='checkoutHeadings'>
                     <h3>Total Items in Cart</h3>
