@@ -2,6 +2,9 @@ import React, { useEffect } from 'react'
 import img from '../images/OfficeChair3.jpeg'
 import { useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+
+
 export default function Cart(props) {
 
     const [cartProducts,setCartProducts] = useState([]);
@@ -86,7 +89,7 @@ export default function Cart(props) {
                     <h3>{cartProducts.length}</h3>
                 </div>
                 <p>Shipping and taxes calculated at checkout</p>
-                <button>Checkout</button>
+                <Link to='/checkout'><button>Checkout</button></Link>
                 <a> or Continue Shopping</a>
             </div>
         </div>

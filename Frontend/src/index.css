@@ -780,10 +780,9 @@ a{
 
 .CheckoutInfo button{
   margin: 0 auto;
-  width: 70%;
   margin-top: 0.7rem;
-  padding: 0.5rem 0;
-  border-radius: 1rem;
+  padding: 0.5rem 1.2rem;
+  border-radius: 1.5rem;
   border: none;
   outline: none;
   color: white;
@@ -800,4 +799,74 @@ a{
 .CheckoutInfo a{
   margin: auto;
   font-size: 0.8rem;
+}
+
+.checkoutContainer{
+  display: flex;
+  flex-direction: column;
+  margin: 3rem 8rem;
+}
+
+.checkoutFormContainer
+{
+  display: flex;
+  flex-direction: row;
+}
+
+.checkoutForm{
+  width: 35%;
+}
+
+.checkoutForm label{
+  display: flex;
+  font-size: 1rem;
+  font-weight: 590;
+  margin-bottom: 0.7rem;
+  margin-left: 0.1rem;
+  margin-right: 0.15rem;
+  flex-direction: column;
+  color: #123026;
+}
+
+.checkoutForm input{
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  padding: 8px 8px;
+  box-sizing: border-box;
+  border-radius: 0.5rem;
+  border: 0.5px solid #afafaf;
+}
+
+.checkoutForm input[type="submit"] {
+  background-color: #123026;
+  color: white;
+  margin-top: 0.5rem;
+  cursor: pointer;
+}
+
+.localAddress{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.localAddressInput{
+  display: flex;
+  flex-direction: column;
+}
+
+.checkoutFormHeading{
+  margin-bottom: 2rem ;
+}
+
+.checkoutFormHeading h1{
+  margin: 0;
+}
+
+.checkoutFormHeading p{
+  margin: 0;
+  margin-top: 0.3rem;
 }

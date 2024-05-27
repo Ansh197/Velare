@@ -9,7 +9,7 @@ import { BrowserRouter , Routes , Route } from 'react-router-dom';
 import Footer from './components/Footer';
 import AllProducts from './components/AllProducts';
 import Cart from './components/Cart';
-
+import Checkout from './components/Checkout' 
 
 function App() {
   
@@ -30,6 +30,7 @@ function App() {
           <Route exact path='/login' element={<LoginForm setParentUserData={setUserData} />}></Route>
           <Route exact path='/products' element={<AllProducts userData={userData} />}></Route>
           <Route exact path='/cart' element={userData.isLoggedIn ? <Cart userData={userData} /> : <LoginForm setParentUserData={setUserData} />}></Route>
+          <Route exact path='/checkout' element={<Checkout userData={userData}/>}></Route>
         </Routes>
         <Footer/>
       </BrowserRouter>
