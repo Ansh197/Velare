@@ -30,7 +30,7 @@ function App() {
           <Route exact path='/login' element={<LoginForm setParentUserData={setUserData} />}></Route>
           <Route exact path='/products' element={<AllProducts userData={userData} />}></Route>
           <Route exact path='/cart' element={userData.isLoggedIn ? <Cart userData={userData} /> : <LoginForm setParentUserData={setUserData} />}></Route>
-          <Route exact path='/checkout' element={<Checkout userData={userData}/>}></Route>
+          <Route exact path='/checkout' element={userData.isLoggedIn ? <Checkout userData={userData} /> : <LoginForm setParentUserData={setUserData} />}></Route>
         </Routes>
         <Footer/>
       </BrowserRouter>

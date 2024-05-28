@@ -119,6 +119,17 @@ app.post('/changequantitycart',async (req,res)=>{
     const result = await db.query(`update cart set quantity = $1 where id = $2`,[req.body.quantity,req.body.id])
 })
 
+app.post('/getAddress', async (req,res)=>{
+    const result = await db.query(`select * from address where user_id = $1`,[req.body.userid]);
+    res.json(result.rows);
+})
+
+app.post('/addAddress', async (req,res)=>{
+    const formData = req.body;
+    const result = await db.query(`insert into address values ($1,$2,$3,$4,$5,$6,$7)`,[formData.phone_number,formData.province,formData.city,formData.zip,formData.street_address,formData.full_name,  formData.user_id]);
+
+})
+
 // db.end(); 
 
 app.listen(port,()=>{

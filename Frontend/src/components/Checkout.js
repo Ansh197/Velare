@@ -3,9 +3,16 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 
 export default function Checkout(props) {
-  const changeFormData = () => {};
-
   const [addressData , setAddressData] = useState([]);
+
+  async function formSubmit(e){
+    e.preventDefault();
+    await axios.post('http://localhost:5000/addAddress',formData);
+  }
+
+  useEffect(()=>{
+    console.log(addressData);
+  },[addressData])
 
   const fetchAddress = async()=>{
     await axios.post("http://localhost:5000/getAddress",props.userData)
@@ -19,15 +26,24 @@ export default function Checkout(props) {
 
   useEffect(()=>{
     fetchAddress();
-  },[addressData]);
+  },[]);
+
+  const changeFormData = (e)=>{
+    const {name,value} = e.target;
+    setFormData(prevState=>({
+      ...prevState,
+      [name]: value,
+    }));
+  };
 
   const [formData, setFormData] = useState({
-    fullName: "",
-    contactInfo: "",
-    address: "",
+    full_name: "",
+    phone_number: "",
+    street_address: "",
     city: "",
-    state: "",
+    province: "",
     zip: "",
+    user_id:props.userData.userid
   });
 
   return (
@@ -39,28 +55,28 @@ export default function Checkout(props) {
               <h1>Personal Information</h1>
               <p>Use a permanant address where you can recieve the package</p>
             </div>
-            <form className="checkoutForm">
-              <label htmlFor="fullName">Full Name</label>
+            <form className="checkoutForm" method="post" onSubmit={formSubmit}>
+              <label htmlFor="full_name">Full Name</label>
               <input
                 type="text"
-                name="fullName"
-                value={formData.fullName}
+                name="full_name"
+                value={formData.full_name}
                 onChange={changeFormData}
                 required
               />
-              <label htmlFor="contactInfo">Contact Info</label>
+              <label htmlFor="phone_number">Phone Number</label>
               <input
                 type="text"
-                name="contactInfo"
-                value={formData.contactInfo}
+                name="phone_number"
+                value={formData.phone_number}
                 onChange={changeFormData}
                 required
               />
-              <label htmlFor="address">Street Address</label>
+              <label htmlFor="street_address">Street Address</label>
               <input
                 type="text"
-                name="address"
-                value={formData.address}
+                name="street_address"
+                value={formData.street_address}
                 onChange={changeFormData}
                 required
               />
@@ -76,11 +92,11 @@ export default function Checkout(props) {
                   />
                 </div>
                 <div className="localAddressInput">
-                  <label htmlFor="state">State / Province</label>
+                  <label htmlFor="province">State / Province</label>
                   <input
                     type="text"
-                    name="state"
-                    value={formData.state}
+                    name="province"
+                    value={formData.province}
                     onChange={changeFormData}
                     required
                   />
@@ -96,8 +112,15 @@ export default function Checkout(props) {
                   />
                 </div>
               </div>
-              <input type="submit" value="Add Address" />
+              <input type="submit" value="Add Address"/>
             </form>
+            <div className="exisitingAddress">
+              <h1>Address</h1>
+              <h3>Choose from existing addresses</h3>
+              {addressData.map((elem)=>
+                <h1>{elem.province}</h1>
+              )}
+            </div>
           </div>
         </div>
       </div>
