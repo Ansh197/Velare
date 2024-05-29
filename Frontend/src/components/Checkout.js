@@ -1,18 +1,10 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
+import AddressList from "./AddressList";
 
 export default function Checkout(props) {
   const [addressData , setAddressData] = useState([]);
-
-  async function formSubmit(e){
-    e.preventDefault();
-    await axios.post('http://localhost:5000/addAddress',formData);
-  }
-
-  useEffect(()=>{
-    console.log(addressData);
-  },[addressData])
 
   const fetchAddress = async()=>{
     await axios.post("http://localhost:5000/getAddress",props.userData)
@@ -36,6 +28,21 @@ export default function Checkout(props) {
     }));
   };
 
+  const formSubmit = async (e) =>{
+    e.preventDefault();
+    await axios.post('http://localhost:5000/addAddress',formData)
+    await axios.post("http://localhost:5000/getAddress",props.userData)
+    .then(res=>{
+      setAddressData(res.data);
+    })
+    .catch(error=>{
+      console.log(error);
+    })
+    // .then(res=>{
+    //   console.log(res);
+    // })
+  }
+
   const [formData, setFormData] = useState({
     full_name: "",
     phone_number: "",
@@ -43,7 +50,8 @@ export default function Checkout(props) {
     city: "",
     province: "",
     zip: "",
-    user_id:props.userData.userid
+    user_id:props.userData.userid,
+    address_id:''
   });
 
   return (
@@ -114,12 +122,10 @@ export default function Checkout(props) {
               </div>
               <input type="submit" value="Add Address"/>
             </form>
-            <div className="exisitingAddress">
+            <div className="existingAddress">
               <h1>Address</h1>
-              <h3>Choose from existing addresses</h3>
-              {addressData.map((elem)=>
-                <h1>{elem.province}</h1>
-              )}
+              <p>Choose from existing addresses</p>
+              <AddressList addressData = {addressData}/>
             </div>
           </div>
         </div>
