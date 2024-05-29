@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import AddressList from "./AddressList";
+import CheckoutSummary from "./CheckoutSummary";
 
 export default function Checkout(props) {
   const [addressData , setAddressData] = useState([]);
@@ -127,6 +128,9 @@ export default function Checkout(props) {
               <p>Choose from existing addresses</p>
               <AddressList addressData = {addressData}/>
             </div>
+          </div>
+          <div className="checkoutFormInnerContainer2">
+            <CheckoutSummary userData={props.userData}/>
           </div>
         </div>
       </div>
