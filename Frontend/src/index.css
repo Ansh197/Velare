@@ -933,3 +933,35 @@ a{
 .checkoutFormInnerContainer2{
   width: 30%;
 }
+
+.profileContainer{
+  margin: 3rem auto;
+  padding: 0 8rem;
+  width: 60%;
+  margin-bottom: 1.5rem;
+  padding-bottom: 2rem;
+}
+
+.profileContainer h1,h3{
+  margin: 0;
+}
+
+.profileContainerButton{
+  padding: 0.5rem 1.5rem;
+  background-color: #123026;
+  color: white;
+  border-radius: 2rem;
+}
+
+.profileFormButton{
+  background-color: #123026;
+  color: white;
+  cursor: pointer;
+  width: 100%;
+  padding: 0.5rem 0;
+  border-radius: 0.5rem;
+  outline: none;
+  border: none;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+}

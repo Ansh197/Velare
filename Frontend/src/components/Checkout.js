@@ -39,9 +39,6 @@ export default function Checkout(props) {
     .catch(error=>{
       console.log(error);
     })
-    // .then(res=>{
-    //   console.log(res);
-    // })
   }
 
   const [formData, setFormData] = useState({
