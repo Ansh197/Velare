@@ -41,13 +41,8 @@ export default function SignupForm(props) {
 
   async function formSubmit(e){
     e.preventDefault();
-    await axios.post('http://localhost:5000/login',formData
-    ).then(res=>{
-      setUserData(res.data);
-    })
-    .catch(error=>{
-      console.log(error);
-    })
+    const response = await axios.post('http://localhost:5000/login',formData,{withCredentials:true});
+    setUserData(response.data);
   }
 
   return (

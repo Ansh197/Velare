@@ -3,6 +3,16 @@ const cors = require('cors');
 const bcrypt = require('bcrypt');
 const pg = require('pg');
 const nodemailer = require('nodemailer');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken');
+const JWT_SECRET = 'AnshSharma'
+
+const corsOptions ={
+    origin:'http://localhost:3000', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200
+}
 
 const saltRounds = 10;
 
@@ -29,9 +39,10 @@ db.connect();
 
 const port=5000;
 const app = express();
-
 app.use(express.json());
-app.use(cors());
+app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(cors(corsOptions));
 
 var message = 'Hello from Port 5000';
 
@@ -77,6 +88,10 @@ app.post('/login',async (req,res)=>{
     {
         const loginSuccess = await bcrypt.compare(loginData.password,user.user_password);
         if(loginSuccess){
+            const token = jwt.sign({ id: user.id }, JWT_SECRET, {
+            expiresIn: "1h"
+            });
+            res.cookie('token', token, { httpOnly: true, sameSite: 'Lax' });
             res.json({
                 isLoggedIn:true,
                 userid:user.user_id,
@@ -134,6 +149,17 @@ app.post('/removeAddress', async (req,res)=>{
     const result = await db.query(`delete from address where address_id = $1`,[req.body.address_id]);
     res.json('address removed');
 })
+
+function verifyToken(req, res, next) {
+    const token = req.cookies.token;
+    if (!token) return res.status(403).send('No token provided');
+  
+    jwt.verify(token, JWT_SECRET, (err, decoded) => {
+      if (err) return res.status(500).send('Failed to authenticate token');
+      req.userId = decoded.id;
+      next();
+    });
+  }
 
 // db.end(); 
 
