@@ -4,6 +4,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
+axios.defaults.withCredentials = true;
+
 
 export default function Cart(props) {
 
@@ -11,7 +13,7 @@ export default function Cart(props) {
     const [totalPrice,setTotalPrice] = useState(0);
 
     async function fetchProducts(){
-        await axios.post('http://localhost:5000/cart',props.userData)
+        await axios.post('http://localhost:5000/cart/products',props.userData)
         .then((res)=>{
             setCartProducts(res.data);
         })

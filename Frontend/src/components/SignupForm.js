@@ -65,7 +65,7 @@ export default function SignupForm() {
     e.preventDefault();
     var isok = checkPassword();
     if (isok) {
-      axios.post("http://localhost:5000/signup", formData);
+      axios.post("http://localhost:5000/auth/signup", formData);
       console.log("Form submitted successfully");
     } else {
       console.log("Something wrong in the form");
