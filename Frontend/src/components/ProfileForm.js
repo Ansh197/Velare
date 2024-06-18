@@ -14,8 +14,8 @@ export default function ProfileForm(props) {
     
       const formSubmit = async (e) =>{
         e.preventDefault();
-        await axios.post('http://localhost:5000/addAddress',formData)
-        await axios.post("http://localhost:5000/getAddress",props.userData)
+        await axios.post('http://localhost:5000/address/add',formData)
+        await axios.post("http://localhost:5000/address/get",props.userData)
         .then(res=>{
           props.setAddressData(res.data);
         })

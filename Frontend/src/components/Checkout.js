@@ -8,7 +8,7 @@ export default function Checkout(props) {
   const [addressData , setAddressData] = useState([]);
 
   const fetchAddress = async()=>{
-    await axios.post("http://localhost:5000/getAddress",props.userData)
+    await axios.post("http://localhost:5000/address/get",props.userData)
     .then(res=>{
       setAddressData(res.data);
     })
@@ -31,8 +31,8 @@ export default function Checkout(props) {
 
   const formSubmit = async (e) =>{
     e.preventDefault();
-    await axios.post('http://localhost:5000/addAddress',formData)
-    await axios.post("http://localhost:5000/getAddress",props.userData)
+    await axios.post('http://localhost:5000/address/add',formData)
+    await axios.post("http://localhost:5000/address/get",props.userData)
     .then(res=>{
       setAddressData(res.data);
     })

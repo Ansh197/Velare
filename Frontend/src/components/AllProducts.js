@@ -13,7 +13,7 @@ export default function AllProducts(props) {
           product_id:productData[index].product_id,
           user_id: props.userData.userid
         }
-        axios.post('http://localhost:5000/addtocart',sendData)
+        axios.post('http://localhost:5000/cart/add',sendData)
       }
       else
       {

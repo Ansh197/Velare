@@ -24,7 +24,7 @@ export default function Cart(props) {
 
     async function removeFromCart(index){
         console.log('remove clicked');
-        await axios.post('http://localhost:5000/removefromcart',cartProducts[index]);
+        await axios.post('http://localhost:5000/cart/remove',cartProducts[index]);
         fetchProducts();
     }
 
@@ -42,7 +42,7 @@ export default function Cart(props) {
         let tempArray = [...cartProducts];
         tempArray[index].quantity = event.target.value;
         console.log(tempArray[index])
-        await axios.post('http://localhost:5000/changequantitycart',tempArray[index]);
+        await axios.post('http://localhost:5000/cart/changeQuantity',tempArray[index]);
         setCartProducts(tempArray);
         // setCartProducts(tempArray);
     };

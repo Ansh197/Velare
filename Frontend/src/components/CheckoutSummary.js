@@ -10,7 +10,7 @@ export default function CheckoutSummary(props) {
     const [totalPrice,setTotalPrice] = useState(0);
 
     async function fetchProducts(){
-        await axios.post('http://localhost:5000/cart',props.userData)
+        await axios.post('http://localhost:5000/cart/products',props.userData)
         .then((res)=>{
             setCartProducts(res.data);
         })

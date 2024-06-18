@@ -10,7 +10,7 @@ export default function Profile(props) {
     const [showForm, setShowForm] = useState(false);
 
     const fetchAddress = async()=>{
-        await axios.post("http://localhost:5000/getAddress",props.userData)
+        await axios.post("http://localhost:5000/address/get",props.userData)
         .then(res=>{
         setAddressData(res.data);
         })
@@ -20,7 +20,7 @@ export default function Profile(props) {
     }
 
     const removeAddress = async (index) =>{
-        await axios.post('http://localhost:5000/removeAddress',addressData[index])
+        await axios.post('http://localhost:5000/address/remove',addressData[index])
         fetchAddress();
     }
 
