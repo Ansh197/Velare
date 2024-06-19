@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import testImage from '../images/test3.jpg'
 import expandArrow from '../images/icons8-expand-arrow-50.png'
 import Filter from './Filter';
 
@@ -22,7 +21,8 @@ export default function AllProducts(props) {
   }
 
   const effectFunction = async() =>{
-    await axios.get('http://localhost:5000/allproducts')
+    console.log('products requested')
+    await axios.post('http://localhost:5000/pages/allProducts')
       .then(res=>{
         setProductData(res.data);
       })

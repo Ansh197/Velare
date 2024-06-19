@@ -26,10 +26,10 @@ export default function Navbar(props) {
             <ul>
               <Link to='/'><li>Home</li></Link>
               <Link to='/products'><li>All Products</li></Link>
-              <li>Home Decor</li>
-              <li>Seating</li>
-              <li>Bedroom</li>
-              <li>Office</li>
+              <Link to='/homeDecor'><li>Home Decor</li></Link>
+              <Link to='/seating'><li>Seating</li></Link>
+              <Link to='/bedroom'><li>Bedroom</li></Link>
+              <Link to='/office'><li>Office</li></Link>
             </ul>
           </div>
           <div className='nav-right'>

@@ -24,21 +24,23 @@ var message = 'Hello from Port 5000';
 const authRouter = require('./Routes/auth');
 const cartRouter = require('./Routes/cart');
 const addressRouter = require('./Routes/address');
+const pageRouter = require('./Routes/pages');
 
 app.use('/auth',authRouter);
 app.use('/cart',cartRouter);
 app.use('/address',addressRouter);
+app.use('/pages',pageRouter);
 
 app.get('/',(req,res)=>{
     res.send(message);
 });
 
 
-app.get('/allproducts',async (req,res)=>{
-    const result = await db.query('select * from products');
-    const productData = result.rows;
-    res.json(productData);
-})
+// app.get('/allproducts',async (req,res)=>{
+//     const result = await db.query('select * from products');
+//     const productData = result.rows;
+//     res.json(productData);
+// })
 
 // db.end(); 
 
