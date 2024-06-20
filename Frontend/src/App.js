@@ -15,6 +15,7 @@ import HomeDecor from './components/HomeDecor';
 import Seating from './components/Seating';
 import Bedroom from './components/Bedroom';
 import Office from './components/Office';
+import {UserContext} from './context/UserContext'
 
 function App() {
   
@@ -27,23 +28,25 @@ function App() {
   
   return (
     <React.Fragment>
-      <BrowserRouter>
-      <Navbar  loginInfo={userData} setLoginInfo={setUserData} />
-        <Routes>
-          <Route exact path='/' element={<HomePage/>}></Route>
-          <Route exact path='/signup' element={<SignupForm/>}></Route>
-          <Route exact path='/login' element={<LoginForm setParentUserData={setUserData} />}></Route>
-          <Route exact path='/products' element={<AllProducts userData={userData} />}></Route>
-          <Route exact path='/homeDecor' element={<HomeDecor userData={userData} />}></Route>
-          <Route exact path='/seating' element={<Seating userData={userData} />}></Route>
-          <Route exact path='/bedroom' element={<Bedroom userData={userData} />}></Route>
-          <Route exact path='/office' element={<Office userData={userData} />}></Route>
-          <Route exact path='/cart' element={userData.isLoggedIn ? <Cart userData={userData} /> : <LoginForm setParentUserData={setUserData} />}></Route>
-          <Route exact path='/checkout' element={userData.isLoggedIn ? <Checkout userData={userData} /> : <LoginForm setParentUserData={setUserData} />}></Route>
-          <Route exact path='/myprofile' element={userData.isLoggedIn ? <Profile userData={userData}/> : <LoginForm setParentUserData={setUserData}/>}></Route>
-        </Routes>
-        <Footer/>
-      </BrowserRouter>
+      <UserContext.Provider value={{userData,setUserData}}>
+        <BrowserRouter>
+        <Navbar/>
+          <Routes>
+            <Route exact path='/' element={<HomePage/>}></Route>
+            <Route exact path='/signup' element={<SignupForm/>}></Route>
+            <Route exact path='/login' element={<LoginForm/>}></Route>
+            <Route exact path='/products' element={<AllProducts/>}></Route>
+            <Route exact path='/homeDecor' element={<HomeDecor/>}></Route>
+            <Route exact path='/seating' element={<Seating/>}></Route>
+            <Route exact path='/bedroom' element={<Bedroom/>}></Route>
+            <Route exact path='/office' element={<Office/>}></Route>
+            <Route exact path='/cart' element={userData.isLoggedIn ? <Cart/> : <LoginForm/>}></Route>
+            <Route exact path='/checkout' element={userData.isLoggedIn ? <Checkout/> : <LoginForm/>}></Route>
+            <Route exact path='/myprofile' element={userData.isLoggedIn ? <Profile/> : <LoginForm/>}></Route>
+          </Routes>
+          <Footer/>
+        </BrowserRouter>
+      </UserContext.Provider>
     </React.Fragment>
   );
 }

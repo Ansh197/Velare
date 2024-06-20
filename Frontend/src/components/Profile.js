@@ -1,16 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useState , useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import ProfileForm from './ProfileForm';
+import { UserContext } from '../context/UserContext';
 
-export default function Profile(props) {
+export default function Profile() {
+
+    const {userData} = useContext(UserContext);
 
     const [addressData , setAddressData] = useState([]);
     const [showForm, setShowForm] = useState(false);
 
     const fetchAddress = async()=>{
-        await axios.post("http://localhost:5000/address/get",props.userData)
+        await axios.post("http://localhost:5000/address/get",userData)
         .then(res=>{
         setAddressData(res.data);
         })
@@ -32,8 +35,8 @@ export default function Profile(props) {
     <React.Fragment>
         <div className='profileContainer'>
             <div style={{display:'flex',flexDirection:'column',gap:'0.4rem',textAlign:'left',marginBottom:'2rem',borderBottom:'1px solid black',paddingBottom:'2rem'}}>
-            <h1>{`Welcome, ${props.userData.username}`}</h1>
-            <h3>{`Registered Email: ${props.userData.email}`}</h3>
+            <h1>{`Welcome, ${userData.username}`}</h1>
+            <h3>{`Registered Email: ${userData.email}`}</h3>
             </div>
             <div style={{margin:'auto'}}>
 
@@ -43,7 +46,7 @@ export default function Profile(props) {
                 <button className='profileContainerButton' onClick={()=>setShowForm(true)}>Add New Address</button>
 
                 <div style={{marginBottom:'3rem',marginTop:'4rem'}}>
-                {showForm ? <ProfileForm setShowForm={setShowForm} userData={props.userData} setAddressData={setAddressData}/> : null}
+                {showForm ? <ProfileForm setShowForm={setShowForm} setAddressData={setAddressData}/> : null}
                 </div>
 
 

@@ -1,9 +1,12 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState,useContext } from 'react';
 import axios from 'axios';
+import { UserContext } from '../context/UserContext';
 
 export default function ProfileForm(props) {
 
+    const {userData} = useContext(UserContext);
+    
     const changeFormData = (e)=>{
         const {name,value} = e.target;
         setFormData(prevState=>({
@@ -15,7 +18,7 @@ export default function ProfileForm(props) {
       const formSubmit = async (e) =>{
         e.preventDefault();
         await axios.post('http://localhost:5000/address/add',formData)
-        await axios.post("http://localhost:5000/address/get",props.userData)
+        await axios.post("http://localhost:5000/address/get",userData)
         .then(res=>{
           props.setAddressData(res.data);
         })
@@ -29,7 +32,7 @@ export default function ProfileForm(props) {
           city: "",
           province: "",
           zip: "",
-          user_id:props.userData.userid,
+          user_id:userData.userid,
           address_id:''
         });
         // props.setShowForm(false);
@@ -42,7 +45,7 @@ export default function ProfileForm(props) {
         city: "",
         province: "",
         zip: "",
-        user_id:props.userData.userid,
+        user_id:userData.userid,
         address_id:''
       });
 

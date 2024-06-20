@@ -1,16 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../context/UserContext';
 
-export default function CheckoutSummary(props) {
+export default function CheckoutSummary() {
+
+    const {userData} = useContext(UserContext);
 
     const [cartProducts,setCartProducts] = useState([]);
     const [totalPrice,setTotalPrice] = useState(0);
 
     async function fetchProducts(){
-        await axios.post('http://localhost:5000/cart/products',props.userData)
+        await axios.post('http://localhost:5000/cart/products',userData)
         .then((res)=>{
             setCartProducts(res.data);
         })

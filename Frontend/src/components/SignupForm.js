@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 export default function SignupForm() {
   const [errorMessage, setErrorMessage] = useState([]);
   const [passMatch, setPassMatch] = useState("");
-  const [userCheck, setUserCheck] = useState("");
 
   const [formData, setFormData] = useState({
     name: "",
@@ -63,7 +62,7 @@ export default function SignupForm() {
 
   const formSubmit = (e) => {
     e.preventDefault();
-    var isok = checkPassword();
+    const isok = checkPassword();
     if (isok) {
       axios.post("http://localhost:5000/auth/signup", formData);
       console.log("Form submitted successfully");

@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios';
 import expandArrow from '../images/icons8-expand-arrow-50.png'
 import Filter from './Filter';
+import { UserContext } from '../context/UserContext';
 
-export default function AllProducts(props) {
+export default function AllProducts() {
+
+  const {userData} = useContext(UserContext);
 
   function addToCart(index){
-    if(props.userData.isLoggedIn)
+    if(userData.isLoggedIn)
       {
         var sendData = {
           product_id:productData[index].product_id,
-          user_id: props.userData.userid
+          user_id: userData.userid
         }
         axios.post('http://localhost:5000/cart/add',sendData)
       }
@@ -21,7 +24,6 @@ export default function AllProducts(props) {
   }
 
   const effectFunction = async() =>{
-    console.log('products requested')
     await axios.post('http://localhost:5000/pages/allProducts')
       .then(res=>{
         setProductData(res.data);

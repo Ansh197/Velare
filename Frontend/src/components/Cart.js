@@ -1,19 +1,21 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import img from '../images/OfficeChair3.jpeg'
 import { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../context/UserContext';
 
 axios.defaults.withCredentials = true;
 
 
-export default function Cart(props) {
+export default function Cart() {
 
+    const {userData} = useContext(UserContext);
     const [cartProducts,setCartProducts] = useState([]);
     const [totalPrice,setTotalPrice] = useState(0);
 
     async function fetchProducts(){
-        await axios.post('http://localhost:5000/cart/products',props.userData)
+        await axios.post('http://localhost:5000/cart/products',userData)
         .then((res)=>{
             setCartProducts(res.data);
         })

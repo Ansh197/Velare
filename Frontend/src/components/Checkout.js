@@ -1,14 +1,16 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import AddressList from "./AddressList";
 import CheckoutSummary from "./CheckoutSummary";
+import { UserContext } from "../context/UserContext";
 
-export default function Checkout(props) {
+export default function Checkout() {
   const [addressData , setAddressData] = useState([]);
+  const {userData} = useContext(UserContext);
 
   const fetchAddress = async()=>{
-    await axios.post("http://localhost:5000/address/get",props.userData)
+    await axios.post("http://localhost:5000/address/get",userData)
     .then(res=>{
       setAddressData(res.data);
     })
@@ -32,7 +34,7 @@ export default function Checkout(props) {
   const formSubmit = async (e) =>{
     e.preventDefault();
     await axios.post('http://localhost:5000/address/add',formData)
-    await axios.post("http://localhost:5000/address/get",props.userData)
+    await axios.post("http://localhost:5000/address/get",userData)
     .then(res=>{
       setAddressData(res.data);
     })
@@ -48,7 +50,7 @@ export default function Checkout(props) {
     city: "",
     province: "",
     zip: "",
-    user_id:props.userData.userid,
+    user_id:userData.userid,
     address_id:''
   });
 
@@ -127,7 +129,7 @@ export default function Checkout(props) {
             </div>
           </div>
           <div className="checkoutFormInnerContainer2">
-            <CheckoutSummary userData={props.userData}/>
+            <CheckoutSummary/>
           </div>
         </div>
       </div>

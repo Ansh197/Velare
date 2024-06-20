@@ -1,17 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import {UserContext} from '../context/UserContext'
 
-export default function SignupForm(props) {
+export default function SignupForm() {
 
+  const { userData , setUserData} = useContext(UserContext);
   const initialRender = useRef(true);
   const [error,setError] =useState('');
-  const [userData,setUserData] = useState({
-    isLoggedIn:false,
-    userid: '',
-    username:'',
-    email:''
-});
 
   const [formData, setFormData] = useState({
     email: "",
@@ -19,8 +15,6 @@ export default function SignupForm(props) {
   });
 
   useEffect(()=>{
-    console.log(userData);
-    props.setParentUserData(userData);
     if(initialRender.current)
     {
       initialRender.current=false;
