@@ -22,6 +22,10 @@ export default function AllProducts() {
 
   const [productData,setProductData] = useState([]);
 
+  const [categoryFilter,setCategoryFilter] = useState([]);
+  const [colorFilter,setColorFilter] = useState([]);
+  const [brandFilter,setBrandFilter] = useState([]);
+
   function addToCart(index){
     if(userData.isLoggedIn)
       {
@@ -38,13 +42,14 @@ export default function AllProducts() {
   }
 
   const fetchProducts = async() =>{
-    await axios.post('http://localhost:5000/pages/allProducts')
+    var productObject = {colorFilter:colorFilter,brandFilter:brandFilter,categoryFilter:categoryFilter};
+    await axios.post('http://localhost:5000/pages/allProducts',productObject)
       .then(res=>{
         setProductData(res.data);
       })
       .catch(error=>{
         console.log(error);
-      })
+      });
   }
 
   const applyFilterList = () => {
@@ -70,11 +75,11 @@ export default function AllProducts() {
           <div className='filters'>
             <h1>Filters</h1>
             <div className='filter-innerdiv' onClick={()=>{setfilter({...filter,color:filter.color^1})}}>Color <img src={expandArrow} alt='expand arrow'/></div>
-            <div>{filter.color?<Filter filterList={filterList.colorSet}/>:null}</div>
+            <div>{filter.color?<Filter setProductFilter={setColorFilter} filterList={filterList.colorSet}/>:null}</div>
             <div className='filter-innerdiv' onClick={()=>{setfilter({...filter,brand:filter.brand^1})}}>Brand <img src={expandArrow} alt='expand arrow'/></div>
-            <div>{filter.brand?<Filter filterList={filterList.brandSet}/>:null}</div>
+            <div>{filter.brand?<Filter setProductFilter={setBrandFilter} filterList={filterList.brandSet}/>:null}</div>
             <div className='filter-innerdiv' onClick={()=>{setfilter({...filter,category:filter.category^1})}}>Category <img src={expandArrow} alt='expand arrow'/></div>
-            <div>{filter.category?<Filter filterList={filterList.categorySet}/>:null}</div>
+            <div>{filter.category?<Filter setProductFilter={setCategoryFilter} filterList={filterList.categorySet}/>:null}</div>
           </div>
 
             <div className='productsGrid'>
