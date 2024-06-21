@@ -8,6 +8,20 @@ export default function AllProducts() {
 
   const {userData} = useContext(UserContext);
 
+  const [filterList,setFilterList] = useState({
+    colorSet: new Set(),
+    categorySet: new Set(),
+    brandSet: new Set()
+  });
+
+  const [filter,setfilter] = useState({
+    color:false,
+    category:false,
+    brand:false
+  });
+
+  const [productData,setProductData] = useState([]);
+
   function addToCart(index){
     if(userData.isLoggedIn)
       {
@@ -23,7 +37,7 @@ export default function AllProducts() {
       }
   }
 
-  const effectFunction = async() =>{
+  const fetchProducts = async() =>{
     await axios.post('http://localhost:5000/pages/allProducts')
       .then(res=>{
         setProductData(res.data);
@@ -33,17 +47,21 @@ export default function AllProducts() {
       })
   }
 
+  const applyFilterList = () => {
+    for(var i=0;i<productData.length;++i)
+      {
+        var obj = filterList;
+        obj.colorSet.add(productData[i].color);
+        obj.categorySet.add(productData[i].category);
+        obj.brandSet.add(productData[i].brand);
+        setFilterList(obj);
+      }
+  }
+
   useEffect(()=>{
-    effectFunction();
-  },[])
-
-  const [filter,setfilter] = useState({
-    color:false,
-    category:false,
-    brand:false
-  });
-
-  const [productData,setProductData] = useState([]);
+    fetchProducts();
+    applyFilterList();
+  },[productData])
 
   return (
     <React.Fragment>
@@ -52,9 +70,11 @@ export default function AllProducts() {
           <div className='filters'>
             <h1>Filters</h1>
             <div className='filter-innerdiv' onClick={()=>{setfilter({...filter,color:filter.color^1})}}>Color <img src={expandArrow} alt='expand arrow'/></div>
-            <div>{filter.color?<Filter/>:null}</div>
+            <div>{filter.color?<Filter filterList={filterList.colorSet}/>:null}</div>
             <div className='filter-innerdiv' onClick={()=>{setfilter({...filter,brand:filter.brand^1})}}>Brand <img src={expandArrow} alt='expand arrow'/></div>
+            <div>{filter.brand?<Filter filterList={filterList.brandSet}/>:null}</div>
             <div className='filter-innerdiv' onClick={()=>{setfilter({...filter,category:filter.category^1})}}>Category <img src={expandArrow} alt='expand arrow'/></div>
+            <div>{filter.category?<Filter filterList={filterList.categorySet}/>:null}</div>
           </div>
 
             <div className='productsGrid'>

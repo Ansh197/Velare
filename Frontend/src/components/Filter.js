@@ -1,14 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
-export default function Filter() {
+export default function Filter(props) {
+
   return (
     <React.Fragment>
         <ul>
-            <li>Beige</li>
-            <li>Beige</li>
-            <li>Beige</li>
-            <li>Beige</li>
-            <li>Beige</li>
+            {[...props.filterList].map((elem)=>(<li>{elem}</li>))}
         </ul>
     </React.Fragment>
   )
