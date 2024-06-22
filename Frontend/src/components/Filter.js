@@ -16,7 +16,6 @@ export default function Filter(props) {
       elem.isChecked? checkedFilter.push(elem.value) : null
     );
     props.setProductFilter(checkedFilter);
-    // await axios.post('http://localhost:5000/filters/allProducts',)
   }
 
   useEffect(()=>{
