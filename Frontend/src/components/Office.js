@@ -70,14 +70,14 @@ export default function Office() {
     <React.Fragment>
         <div className='productsContainer'>
 
-          <div className='filters'>
+        <div className='filters'>
             <h1>Filters</h1>
             <div className='filter-innerdiv' onClick={()=>{setfilter({...filter,color:filter.color^1})}}>Color <img src={expandArrow} alt='expand arrow'/></div>
-            <div>{filter.color?<Filter setProductFilter={setColorFilter} filterList={filterList.colorSet}/>:null}</div>
+            <div>{filter.color?<Filter getProductFilter={colorFilter} setProductFilter={setColorFilter} filterList={filterList.colorSet}/>:null}</div>
             <div className='filter-innerdiv' onClick={()=>{setfilter({...filter,brand:filter.brand^1})}}>Brand <img src={expandArrow} alt='expand arrow'/></div>
-            <div>{filter.brand?<Filter setProductFilter={setBrandFilter} filterList={filterList.brandSet}/>:null}</div>
+            <div>{filter.brand?<Filter getProductFilter={brandFilter} setProductFilter={setBrandFilter} filterList={filterList.brandSet}/>:null}</div>
           </div>
-
+          
             <div className='productsGrid'>
 
                 {productData.map((card,index)=>(

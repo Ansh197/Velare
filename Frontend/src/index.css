@@ -556,15 +556,6 @@ a{
   justify-content: flex-start;
 }
 
-.productsGrid{
-  display: grid;
-  grid-template-columns: repeat(3,minmax(0,1fr));
-  column-gap: 3.5rem;
-  row-gap: 4rem;
-  margin: 0 2rem;
-  width: auto;
-}
-
 .productCard{
   width: 100%;
   display: flex;
@@ -621,9 +612,18 @@ a{
 .filters{
   display: flex;
   flex-direction: column;
-  width: 35%;
   border-right: 1px solid #123026;
   border-top: 1px solid #123026;
+  width: 20%;
+}
+
+.productsGrid{
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  column-gap: 3.5rem;
+  row-gap: 4rem;
+  margin: 0 2rem;
+  width: 80%;
 }
 
 .filter-innerdiv{
@@ -647,6 +647,16 @@ a{
 
 .filter-innerdiv img{
   height: 1rem;
+}
+
+.filterListOuterDiv{
+  padding: 1rem;
+  padding-top: 0;
+}
+
+.filterListElements{
+  font-size: 1rem;
+  padding-top: 0.3rem;
 }
 
 .cartOuterContainer{
