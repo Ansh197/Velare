@@ -1,8 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 export default function AddressList(props) {
 
-    const [selectedOption,setSelectedOption] = useState('');
+    const [selectedOption,setSelectedOption] = useState(null);
+
+    useEffect(()=>{
+      props.setSelectedAddress(selectedOption);
+    },[selectedOption])
 
   return (
     <React.Fragment>

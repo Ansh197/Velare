@@ -5,12 +5,12 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 
-export default function CheckoutSummary() {
+
+export default function CheckoutSummary(props) {
 
     const {userData} = useContext(UserContext);
 
     const [cartProducts,setCartProducts] = useState([]);
-    const [totalPrice,setTotalPrice] = useState(0);
 
     async function fetchProducts(){
         await axios.post('http://localhost:5000/cart/products',userData)
@@ -28,7 +28,7 @@ export default function CheckoutSummary() {
         {
             curPrice+= (cartProducts[i].quantity * cartProducts[i].price)
         }
-        setTotalPrice(curPrice);
+        props.setTotalPrice(curPrice);
     },[cartProducts])
 
   return (
@@ -57,14 +57,14 @@ export default function CheckoutSummary() {
         <div className='CheckoutInfo' style={{width:'100%',boxSizing:'border-box',marginTop:'2.5rem'}}>
                 <div className='checkoutHeadings'>
                     <h3>Subtotal</h3>
-                    <h3>{totalPrice} $</h3>
+                    <h3>{props.totalPrice} $</h3>
                 </div>
                 <div className='checkoutHeadings'>
                     <h3>Total Items in Cart</h3>
                     <h3>{cartProducts.length}</h3>
                 </div>
                 <p>Shipping and taxes calculated at checkout</p>
-                <Link to='/checkout'><button>Order Now</button></Link>
+                <button onClick={props.placeOrder}>Order Now</button>
                 <a> or Continue Shopping</a>
         </div>
     </React.Fragment>

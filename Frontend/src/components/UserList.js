@@ -40,8 +40,8 @@ export default function UserList(props) {
     <React.Fragment>
         <div className='signup-list'>
               <Link to={url} onClick={toggleState}><p>{message}</p></Link>
-              <Link to='myprofile' onClick={myProfile}> <p>My Profile </p></Link>
-              <p>My Orders</p>
+              <Link to='/myprofile' onClick={myProfile}> <p>My Profile </p></Link>
+              <Link to='/orders' onClick={myProfile}><p>My Orders</p></Link>
         </div>
     </React.Fragment>
   )

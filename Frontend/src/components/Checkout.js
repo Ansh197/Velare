@@ -7,7 +7,20 @@ import { UserContext } from "../context/UserContext";
 
 export default function Checkout() {
   const [addressData , setAddressData] = useState([]);
+  const [selectedAddress , setSelectedAddress] = useState();
   const {userData} = useContext(UserContext);
+  const [totalPrice,setTotalPrice] = useState(0);
+
+  async function placeOrder(){
+    const obj = {userData:userData,address:selectedAddress,totalPrice:totalPrice};
+    if(selectedAddress)
+    {
+      await axios.post('http://localhost:5000/cart/placeOrder',obj);
+      // console.log(result);
+    }
+    else
+    console.log('Please select an address first');
+}
 
   const fetchAddress = async()=>{
     await axios.post("http://localhost:5000/address/get",userData)
@@ -125,11 +138,11 @@ export default function Checkout() {
             <div className="existingAddress">
               <h1>Address</h1>
               <p>Choose from existing addresses</p>
-              <AddressList addressData = {addressData}/>
+              <AddressList setSelectedAddress={setSelectedAddress} addressData = {addressData}/>
             </div>
           </div>
           <div className="checkoutFormInnerContainer2">
-            <CheckoutSummary/>
+            <CheckoutSummary totalPrice={totalPrice} setTotalPrice={setTotalPrice} placeOrder={placeOrder} />
           </div>
         </div>
       </div>

@@ -16,6 +16,7 @@ import Seating from './components/Seating';
 import Bedroom from './components/Bedroom';
 import Office from './components/Office';
 import {UserContext} from './context/UserContext'
+import Orders from './components/Orders';
 
 function App() {
   
@@ -43,6 +44,7 @@ function App() {
             <Route exact path='/cart' element={userData.isLoggedIn ? <Cart/> : <LoginForm/>}></Route>
             <Route exact path='/checkout' element={userData.isLoggedIn ? <Checkout/> : <LoginForm/>}></Route>
             <Route exact path='/myprofile' element={userData.isLoggedIn ? <Profile/> : <LoginForm/>}></Route>
+            <Route exact path='/orders' element= {userData.isLoggedIn? <Orders/> : <LoginForm/>}></Route>
           </Routes>
           <Footer/>
         </BrowserRouter>
