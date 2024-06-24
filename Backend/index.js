@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 
 const corsOptions ={
     origin:'http://localhost:3000', 
-    credentials:true,            //access-control-allow-credentials:true
+    credentials:true,  //access-control-allow-credentials:true
     optionSuccessStatus:200
 }
 
@@ -25,24 +25,17 @@ const authRouter = require('./Routes/auth');
 const cartRouter = require('./Routes/cart');
 const addressRouter = require('./Routes/address');
 const pageRouter = require('./Routes/pages');
+const orderRouter = require('./Routes/orders');
 
 app.use('/auth',authRouter);
 app.use('/cart',cartRouter);
 app.use('/address',addressRouter);
 app.use('/pages',pageRouter);
+app.use('/orders',orderRouter);
 
 app.get('/',(req,res)=>{
     res.send(message);
 });
-
-
-// app.get('/allproducts',async (req,res)=>{
-//     const result = await db.query('select * from products');
-//     const productData = result.rows;
-//     res.json(productData);
-// })
-
-// db.end(); 
 
 app.listen(port,()=>{
     console.log('Server is running');

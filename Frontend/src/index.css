@@ -975,3 +975,23 @@ a{
   margin-top: 0.5rem;
   font-size: 1rem;
 }
+
+.orderOuterContainer{
+  display: flex;
+  flex-direction: column;
+  padding: 5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.ordersContainer{
+  display: flex;
+  flex-direction: column;
+  margin: 2rem;
+  border: 1px solid black;
+}
+
+.ordersContainer div{
+  font-size: 1.5rem;
+  font-weight: 550;
+}

@@ -35,7 +35,9 @@ exports.placeOrder = async (req,res) =>{
       INSERT INTO order_items (order_id, product_id, quantity)
       VALUES ($1, $2, $3);
     `;
+    await db.query(`delete from cart where user_id = $1`,[user.userid]);
     for (let item of products) {
         await db.query(insertOrderItemsQuery, [orderid, item.product_id, item.quantity]);
       }
+      res.send(orderid);
 }
