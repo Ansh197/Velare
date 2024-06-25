@@ -979,29 +979,72 @@ a{
 .orderOuterContainer{
   display: flex;
   flex-direction: column;
-  padding: 5rem;
+  padding: 1rem 8rem;
   align-items: center;
   justify-content: center;
+  width: inherit;
 }
 
 .ordersContainer{
+  width: 75%;
   display: flex;
   flex-direction: column;
-  margin: 2rem;
-  border: 1px solid black;
+  margin: 1rem 2rem;
+  padding: 1.5rem 2rem;
+  background-color: rgb(243, 241, 241);
+  border-radius: 2rem;
 }
 
-.ordersContainer div{
-  font-size: 1.5rem;
-  font-weight: 550;
+.orderDetails{
+  margin: 0.1rem 0rem;
+  font-size: 1.2rem;
 }
 
 .orderProductsContainer{
   width: 100%;
   display: flex;
   flex-direction: row;
+  position: relative;
 }
 
-.orderProductsContainer img{
-  width: 5rem;
+.orderedProductsImage{
+  display: flex;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.orderedProductsImage img{
+  width: 14rem;
+  height: 11rem;
+}
+
+.orderInfo{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.ordersHeading{
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.viewOrderDetails{
+  font-size: 1rem;
+  margin: 0.2rem;
+  cursor: pointer;
+}
+
+.orderedProductsImage span{
+  position: absolute;
+  color: white;
+  font-size: 3rem;
+  background-color: rgba(18, 48, 38,0.4);
+  width: 14rem;
+  height: 11rem;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }

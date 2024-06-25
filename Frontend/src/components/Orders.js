@@ -25,28 +25,42 @@ export default function Orders() {
 
   return (
     <React.Fragment>
+      <div className="ordersHeading">My Orders</div>
       <div className="orderOuterContainer">
-        {orders.map((elem) => (
+        {orders.map((elem) => {
+
+          const slicedElements = elem.products.slice(0,4);
+          const remainingCount = elem.products.length-4;
+          
+          return (
           <div className="ordersContainer">
-            <div>Order ID : {elem.order_id}</div>
-            <div>Total Cost : {elem.total_cost}</div>
-            <div>Order Date : {elem.order_date}</div>
+            <div className="orderInfo">
+              <div>
+                <div className="orderDetails">Order ID : {elem.order_id}</div>
+                <div className="orderDetails">
+                  Total Cost : {elem.total_cost}
+                </div>
+                <div className="orderDetails">
+                  Order Date : {elem.order_date}
+                </div>
+              </div>
+              <div className="viewOrderDetails">View Details</div>
+            </div>
 
             <div className="orderProductsContainer">
-              {elem.products.map((card) => (
-                <div>
-                  <div >
-                    <img src={card.image_url} />
-                  </div>
-                  <div >
-                    <h3>{card.description}</h3>
-                    <h1>{card.price}</h1>
-                  </div>
+              {slicedElements.map((card,index) => (
+                <div className="orderedProductsImage">
+                  <img src={card.image_url} />
+                  {index === slicedElements.length - 1 && remainingCount > 0 && (
+                    <span>
+                      +{remainingCount}
+                    </span>
+                  )}
                 </div>
               ))}
             </div>
           </div>
-        ))}
+        )})}
       </div>
     </React.Fragment>
   );
