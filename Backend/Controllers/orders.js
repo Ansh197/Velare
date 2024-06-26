@@ -74,7 +74,6 @@ exports.orderDetails = async (req,res) =>{
     addressDetails:addressDetails,
     productDetails:productDetails,
   };
-
   res.json(result);
   
 }

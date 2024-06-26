@@ -1048,3 +1048,42 @@ a{
   display: flex;
   justify-content: center;
 }
+
+.OrderDetailsOuterContainer{
+  width: 85%;
+  margin: 5rem auto;
+  border: 1px solid black;
+  padding: 2rem;
+}
+
+.OrderDetails-orderDetails{
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.Od-ProductDetailsContainer{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  column-gap: 2rem;
+  row-gap: 1rem;
+  padding: 2rem 0rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.Od-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.Od-ProductDetailsInnerContainer img{
+  width: 100%;
+  height: 16rem;
+}
+
+.Od-productDetails{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
