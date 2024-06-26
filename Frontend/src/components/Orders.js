@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/UserContext";
+import { Link } from 'react-router-dom';
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);
@@ -44,7 +45,7 @@ export default function Orders() {
                   Order Date : {elem.order_date}
                 </div>
               </div>
-              <div className="viewOrderDetails">View Details</div>
+              <Link to={`/orderDetails/${elem.order_id}`}><div className="viewOrderDetails">View Details</div></Link>
             </div>
 
             <div className="orderProductsContainer">

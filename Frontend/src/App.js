@@ -15,6 +15,7 @@ import HomeDecor from './components/HomeDecor';
 import Seating from './components/Seating';
 import Bedroom from './components/Bedroom';
 import Office from './components/Office';
+import OrderDetails from './components/OrderDetails'
 import {UserContext} from './context/UserContext'
 import Orders from './components/Orders';
 
@@ -45,6 +46,7 @@ function App() {
             <Route exact path='/checkout' element={userData.isLoggedIn ? <Checkout/> : <LoginForm/>}></Route>
             <Route exact path='/myprofile' element={userData.isLoggedIn ? <Profile/> : <LoginForm/>}></Route>
             <Route exact path='/orders' element= {userData.isLoggedIn? <Orders/> : <LoginForm/>}></Route>
+            <Route exact path='/orderDetails/:orderId' element= {userData.isLoggedIn? <OrderDetails/> : <LoginForm/>}></Route>
           </Routes>
           <Footer/>
         </BrowserRouter>

@@ -25,6 +25,56 @@ exports.allOrders = async(req,res)=>{
           products: productsByOrderId[order.order_id] || []
         };
       });
-    //   console.log(ordersWithProducts[0].products)
     res.json(ordersWithProducts);
+}
+
+exports.orderDetails = async (req,res) =>{
+  const {rows} = await db.query(`select orders.order_id, to_char(orders.order_date, 'DD-MM-YYYY') AS order_date, orders.total_cost, address.*, products.*, order_items.quantity FROM
+        orders
+      JOIN
+        order_items ON orders.order_id = order_items.order_id
+      JOIN
+        products ON order_items.product_id = products.product_id
+      JOIN
+        address ON orders.address_id = address.address_id
+      WHERE
+        orders.order_id = $1;`,[req.body.orderId]);
+
+  if (rows.length === 0) {
+    return res.status(404).json({ error: 'Order not found' });
+  }
+
+  const orderDetails = {
+    order_id: rows[0].order_id,
+    total_cost: rows[0].total_cost,
+    order_date: rows[0].order_date,
+  };
+
+  const addressDetails = {
+    phone_number: rows[0].phone_number,
+    zip: rows[0].zip,
+    city: rows[0].city,
+    province: rows[0].province,
+    street_address: rows[0].street_address,
+    full_name: rows[0].full_name
+  };
+
+  const productDetails = rows.map(row => ({
+    color: row.color,
+    brand: row.brand,
+    category: row.category,
+    description: row.description,
+    price: row.price,
+    image_url: row.image_url,
+    quantity: row.quantity,
+  }));
+
+  const result = {
+    orderDetails:orderDetails,
+    addressDetails:addressDetails,
+    productDetails:productDetails,
+  };
+
+  res.json(result);
+  
 }
