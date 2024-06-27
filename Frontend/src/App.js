@@ -18,6 +18,7 @@ import Office from './components/Office';
 import OrderDetails from './components/OrderDetails'
 import {UserContext} from './context/UserContext'
 import Orders from './components/Orders';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   
@@ -33,6 +34,7 @@ function App() {
       <UserContext.Provider value={{userData,setUserData}}>
         <BrowserRouter>
         <Navbar/>
+        <ScrollToTop/>
           <Routes>
             <Route exact path='/' element={<HomePage/>}></Route>
             <Route exact path='/signup' element={<SignupForm/>}></Route>

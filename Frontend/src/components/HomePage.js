@@ -6,6 +6,10 @@ import reviewImage from '../images/reviewsofa.jpg'
 import Categories from './Categories'
 import sofa from '../images/sofa1.jpg'
 import nature from '../images/nature.webp'
+import officeChair from'../images/OfficeChair1.jpeg'
+import homeDecorImage from '../images/homeDecorImage.webp'
+import SeatingImage from '../images/SeatingImage.jpg'
+import BedroomImage from '../images/BedroomImage.jpg'
 
 export default function HomePage() {
 
@@ -44,20 +48,24 @@ export default function HomePage() {
 
   const categoriesData = [
     {
-      imageURL : sofa,
-      category : 'Home Decor' 
+      imageURL : homeDecorImage,
+      category : 'Home Decor' ,
+      linkData : 'homeDecor'
     },
     {
-      imageURL : sofa,
-      category : 'Home Decor' 
+      imageURL : SeatingImage,
+      category : 'Seating' ,
+      linkData : 'seating'
     },
     {
-      imageURL : sofa,
-      category : 'Home Decor' 
+      imageURL : BedroomImage,
+      category : 'Bedroom' ,
+      linkData : 'bedroom'
     },
     {
-      imageURL : sofa,
-      category : 'Home Decor' 
+      imageURL : officeChair,
+      category : 'Office' ,
+      linkData : 'office'
     }
   ]
 

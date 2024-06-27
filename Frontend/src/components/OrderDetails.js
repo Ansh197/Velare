@@ -49,27 +49,31 @@ export default function OrderDetails() {
   return (
     <React.Fragment>
       <div className="OrderDetailsOuterContainer">
-        <div className="OrderDetails-orderDetails">Order Id: {orderDetails.orderDetails.order_id}</div>
-        <div className="OrderDetails-orderDetails">Order Date: {orderDetails.orderDetails.order_date}</div>
-        <div className="OrderDetails-orderDetails">Total Cost: {orderDetails.orderDetails.total_cost}</div>
-
+        <div className="OrderInfoContainer">
+        <div className="Od-orderDetails-InnerContainer">
+          <div className="OrderDetails-orderDetails">Order Id: {orderDetails.orderDetails.order_id}</div>
+          <div className="OrderDetails-orderDetails">Order Date: {orderDetails.orderDetails.order_date}</div>
+          <div className="OrderDetails-orderDetails">Total Cost: {orderDetails.orderDetails.total_cost}</div>
+        </div>
         <div className="Od-AddressDetailsContainer">
-          <div>{orderDetails.addressDetails.full_name}</div>
-          <div>{orderDetails.addressDetails.phone_number}</div>
+          <div>Name: {orderDetails.addressDetails.full_name}</div>
+          <div>Phone Number: {orderDetails.addressDetails.phone_number}</div>
+          <div>Shipping Address: </div>
           <div>{orderDetails.addressDetails.street_address}</div>
-          <div>{orderDetails.addressDetails.province}</div>
-          <div>{orderDetails.addressDetails.zip}</div>
           <div>{orderDetails.addressDetails.city}</div>
+          <div>{orderDetails.addressDetails.province} - {orderDetails.addressDetails.zip}</div>
+          {/* <div>{orderDetails.addressDetails.zip}</div> */}
+        </div>
         </div>
 
         <div className="Od-ProductDetailsContainer">
           {orderDetails.productDetails.map((elem) => (
-            <div>
-              <div className="Od-ProductDetailsInnerContainer">
+            <div className="Od-ProductDetailsInnerContainer">
+              <div className="Od-ProductDetailsImageContainer">
                 <img src={elem.image_url} />
               </div>
               <div className="Od-content">
-                <div>{elem.description}</div>
+                <div>{elem.description.slice(0,55)}{elem.description.length>55 ? '...' : ''}</div>
                 <div className="Od-productDetails">
                   <div>Price: {elem.price}</div>
                   <div>Qty: {elem.quantity}</div>
