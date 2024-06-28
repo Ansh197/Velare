@@ -3,6 +3,7 @@ import axios from 'axios';
 import expandArrow from '../images/icons8-expand-arrow-50.png'
 import Filter from './Filter';
 import { UserContext } from '../context/UserContext';
+import { toast } from 'react-toastify';
 
 export default function AllProducts() {
 
@@ -26,18 +27,33 @@ export default function AllProducts() {
   const [colorFilter,setColorFilter] = useState([]);
   const [brandFilter,setBrandFilter] = useState([]);
 
-  function addToCart(index){
+  async function addToCart(index){
+    
     if(userData.isLoggedIn)
       {
         var sendData = {
           product_id:productData[index].product_id,
           user_id: userData.userid
         }
-        axios.post('http://localhost:5000/cart/add',sendData)
+        await axios.post('http://localhost:5000/cart/add',sendData)
+        toast.success('Item added to cart!',{
+          position:'top-right',
+          autoClose:5000,
+          style:{
+            color:'black'
+          }
+        });
+    
       }
       else
       {
-        console.log('You are not logged in');
+        toast.error('You are not Logged In',{
+          position:'top-right',
+          autoClose:5000,
+          style:{
+            color:'black'
+          }
+        })
       }
   }
 
@@ -81,9 +97,7 @@ export default function AllProducts() {
             <div className='filter-innerdiv' onClick={()=>{setfilter({...filter,category:filter.category^1})}}>Category <img src={expandArrow} alt='expand arrow'/></div>
             <div>{filter.category?<Filter getProductFilter={categoryFilter} setProductFilter={setCategoryFilter} filterList={filterList.categorySet}/>:null}</div>
           </div>
-
             <div className='productsGrid'>
-
                 {productData.map((card,index)=>(
                   <div className='productCard'>
                   <div className='productImageContainer'>
@@ -96,6 +110,7 @@ export default function AllProducts() {
                   <button  onClick={()=> addToCart(index)}>Add to Cart</button>
                 </div>
                 ))}
+                
             </div>
         </div>
     </React.Fragment>

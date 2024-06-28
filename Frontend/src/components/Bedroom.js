@@ -4,6 +4,7 @@ import expandArrow from '../images/icons8-expand-arrow-50.png'
 import Filter from './Filter';
 import { useState,useEffect } from 'react';
 import { UserContext } from '../context/UserContext';
+import { toast } from 'react-toastify';
 
 export default function Bedroom() {
 
@@ -30,18 +31,31 @@ export default function Bedroom() {
   
   const [productData,setProductData] = useState([]);
 
-    function addToCart(index){
+    async function addToCart(index){
         if(userData.isLoggedIn)
           {
             var sendData = {
               product_id:productData[index].product_id,
               user_id: userData.userid
             }
-            axios.post('http://localhost:5000/cart/add',sendData)
+            await axios.post('http://localhost:5000/cart/add',sendData)
+            toast.success('Item added to cart!',{
+              position:'top-right',
+              autoClose:5000,
+              style:{
+                color:'black'
+              }
+            });
           }
           else
           {
-            console.log('You are not logged in');
+            toast.error('You are not Logged In',{
+              position:'top-right',
+              autoClose:5000,
+              style:{
+                color:'black'
+              }
+            })
           }
       }
     

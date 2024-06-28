@@ -1,6 +1,7 @@
 import React, { useEffect, useState} from 'react';
 import './App.css';
 import SignupForm from './components/SignupForm';
+import { ToastContainer } from 'react-toastify';
 import axios from 'axios';
 import Navbar from './components/Navbar';
 import HomePage from './components/HomePage';

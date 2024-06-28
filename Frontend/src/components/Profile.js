@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { useState , useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import ProfileForm from './ProfileForm';
 import { UserContext } from '../context/UserContext';
 
@@ -25,6 +25,13 @@ export default function Profile() {
     const removeAddress = async (index) =>{
         await axios.post('http://localhost:5000/address/remove',addressData[index])
         fetchAddress();
+        toast.success('Address Removed successfully',{
+            position:'top-right',
+            autoClose:5000,
+            style:{
+              color:'black'
+            }
+          });
     }
 
     useEffect(()=>{

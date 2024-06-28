@@ -891,6 +891,10 @@ a{
   padding-right: 2rem;
 }
 
+.addressInfo a{
+  cursor: pointer;
+}
+
 .addressInfo{
   display: flex;
   flex-direction: column;

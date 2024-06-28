@@ -2,6 +2,7 @@ import React from 'react'
 import { useState,useContext } from 'react';
 import axios from 'axios';
 import { UserContext } from '../context/UserContext';
+import { toast } from 'react-toastify';
 
 export default function ProfileForm(props) {
 
@@ -35,7 +36,15 @@ export default function ProfileForm(props) {
           user_id:userData.userid,
           address_id:''
         });
-        // props.setShowForm(false);
+        window.scrollTo(0, 0);
+        props.setShowForm(false);
+        toast.success('Address added successfully',{
+          position:'top-right',
+          autoClose:5000,
+          style:{
+            color:'black'
+          }
+        });
       }
     
       const [formData, setFormData] = useState({
@@ -109,7 +118,7 @@ export default function ProfileForm(props) {
                 </div>
               </div>
               <input type="submit" value="Add Address" style={{marginBottom:'0'}}/>
-              <button className='profileFormButton' onClick={()=>props.setShowForm(false)}>Cancel</button>
+              <button className='profileFormButton' onClick={()=>{props.setShowForm(false);window.scrollTo(0,0)}}>Cancel</button>
             </form> 
     </React.Fragment>
   )
