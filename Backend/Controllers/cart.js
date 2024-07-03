@@ -39,5 +39,5 @@ exports.placeOrder = async (req,res) =>{
     for (let item of products) {
         await db.query(insertOrderItemsQuery, [orderid, item.product_id, item.quantity]);
       }
-      res.send(orderid);
+      res.send(orderid)
 }

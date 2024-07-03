@@ -35,7 +35,7 @@ export default function ProfileForm(props) {
           zip: "",
           user_id:userData.userid,
           address_id:''
-        });
+        })
         window.scrollTo(0, 0);
         props.setShowForm(false);
         toast.success('Address added successfully',{
