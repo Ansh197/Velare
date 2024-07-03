@@ -1,14 +1,14 @@
-const express =require('express');
-const pg = require('pg');
+// const express =require('express');
+// const pg = require('pg');
 
-const db = new pg.Client({
-        user:'postgres',
-        host:'localhost',
-        database:'Fullstack',
-        password: "Ansh123@",
-        port: 5432
-    });
+// const db = new pg.Client({
+//         user:'postgres',
+//         host:'localhost',
+//         database:'Fullstack',
+//         password: "Ansh123@",
+//         port: 5432
+//     });
     
-db.connect();
+// db.connect();
 
-module.exports = db;
+// module.exports = db;
