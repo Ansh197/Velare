@@ -13,7 +13,7 @@ const corsOptions ={
     methods:["GET","POST"]
 }
 
-const db = require('./Model/database');
+// const db = require('./Model/database');
 
 const port=process.env.port;
 const app = express();
