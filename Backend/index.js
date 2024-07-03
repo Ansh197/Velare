@@ -15,7 +15,7 @@ const corsOptions ={
 
 const db = require('./Model/database');
 
-const port=5000;
+const port=process.env.port;
 const app = express();
 app.use(express.json());
 app.use(bodyParser.json());
@@ -41,6 +41,12 @@ app.get('/',(req,res)=>{
     res.send(message);
 });
 
-app.listen(port,()=>{
-    console.log('Server is running');
-});
+try{
+    app.listen(port,()=>{
+        console.log('Server is running');
+    });
+}
+catch(err)
+{
+    console.log("Error while starting server : ",err);
+}
